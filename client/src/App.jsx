@@ -1,5 +1,6 @@
 import './App.css';
 // Componentes
+import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
@@ -9,7 +10,7 @@ function App() {
 
   return (
     <div className="bg-dark-bg min-h-screen font-sans selection:bg-neon-green selection:text-black">
-      {/* Navbar simplificado (opcional por ahora, o usamos el Hero como intro) */}
+      <Navbar />
       
       <main>
         <Hero />
