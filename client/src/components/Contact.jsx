@@ -115,7 +115,7 @@ const Contact = () => {
                 ${status === 'sending' ? 'bg-gray-700 border-gray-700 cursor-wait text-gray-400' : 'bg-transparent border-neon-green text-neon-green hover:bg-neon-green hover:text-black'}
               `}
             >
-              {status === 'sending' ? 'ENVIANDO DATOS...' : 'ENVIAR TRANSMISIÓN'}
+              {status === 'sending' ? 'ENVIANDO DATOS...' : 'ENVIAR MENSAJE'}
             </button>
 
             {/* Mensajes de feedback */}
