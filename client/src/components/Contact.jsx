@@ -120,7 +120,7 @@ const Contact = () => {
             {/* Mensajes de feedback */}
             {status === 'success' && (
               <p className="text-neon-green text-center font-mono animate-pulse">
-                ✅ ¡Mensaje recibido en el servidor central!
+                ¡Mensaje recibido en el servidor central!
               </p>
             )}
             {status === 'error' && (
