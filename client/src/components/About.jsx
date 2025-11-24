@@ -80,7 +80,7 @@ const About = () => {
           className="mb-12 text-center md:text-left"
         >
           <h2 className="text-3xl md:text-4xl font-mono font-bold text-neon-green inline-block border-b-4 border-neon-green pb-2">
-            <Sobre Mí />
+            &lt;Sobre Mí /&gt;
           </h2>
         </motion.div>
 
