@@ -21,7 +21,6 @@
 ## 📸 Captura de Pantalla
 
 ![Vista Previa del Portafolio](./screenshot.png)
-*(Asegúrate de subir una imagen llamada 'screenshot.png' a la raíz de tu repo para verla aquí)*
 
 ---
 
