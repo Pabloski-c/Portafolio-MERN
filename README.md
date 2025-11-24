@@ -56,7 +56,7 @@ Si quieres correr este proyecto en tu máquina local:
 1.  **Clonar el repositorio**
     ```bash
     git clone [https://github.com/Pabloski-c/Portafolio-MERN.git](https://github.com/Pabloski-c/Portafolio-MERN.git)
-    cd portfolio-mern-2025
+    cd Portafolio-MERN
     ```
 
 2.  **Configurar el Backend**
