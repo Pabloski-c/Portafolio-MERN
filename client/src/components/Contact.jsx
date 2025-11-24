@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const Contact = () => {
-  // 1. Estados para guardar los datos y el estado del envío
+  // Estados para guardar los datos y el estado del envío
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -10,13 +10,13 @@ const Contact = () => {
   });
   const [status, setStatus] = useState(null); // null | 'sending' | 'success' | 'error'
 
-  // 2. Función para actualizar los datos al escribir
+  // Función para actualizar los datos al escribir
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // 3. Función para enviar los datos al Backend
+  // Función para enviar los datos al Backend
   const handleSubmit = async (e) => {
     e.preventDefault(); // Evita que la página se recargue
     setStatus('sending');
