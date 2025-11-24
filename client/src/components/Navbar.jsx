@@ -6,6 +6,7 @@ const Navbar = () => {
 
   const links = [
     { id: 1, text: 'Inicio', href: '#' }, // href='#' lleva al inicio de la página
+    { id: 4, text: 'Sobre Mí', href: '#sobre-mi' },
     { id: 2, text: 'Proyectos', href: '#proyectos' },
     { id: 3, text: 'Contacto', href: '#contacto' },
   ];
