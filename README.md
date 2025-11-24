@@ -1,4 +1,4 @@
-# 💻 Portafolio Full Stack MERN - Edición Cyberpunk
+# Portafolio Full Stack MERN - Edición Cyberpunk
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
@@ -11,30 +11,33 @@
 
 ---
 
-## 🌐 Demo en Vivo
+## Demo en Vivo
 
-🚀 **Frontend (Vercel):** [https://portafolio-mern.vercel.app](https://portafolio-mern.vercel.app)  
-🔌 **Backend API (Render):** [https://portafolio-mern-api.onrender.com](https://portafolio-mern-api.onrender.com)
+**Frontend (Vercel):** [https://portafolio-mern.vercel.app](https://portafolio-mern.vercel.app)  
+**Backend API (Render):** [https://portafolio-mern-api.onrender.com](https://portafolio-mern-api.onrender.com)
 
 ---
 
-## 📸 Captura de Pantalla
+## Captura de Pantalla
 
 ![Vista Previa del Portafolio](./screenshot.png)
 
 ---
 
-## ✨ Características Principales
+## Características Principales
 
-* **🎨 Diseño UI/UX Moderno:** Estética oscura con acentos verde neón, inspirada en terminales de código. Uso de `framer-motion` para animaciones suaves.
-* **🔗 Integración con GitHub API:** Los proyectos mostrados se obtienen dinámicamente desde mi cuenta de GitHub. ¡Si actualizo un repo, se actualiza el portafolio!
-* **📩 Sistema de Contacto Full Stack:** Formulario funcional conectado a un Backend propio (Node/Express) que almacena los mensajes en una base de datos MongoDB en la nube.
-* **📱 Totalmente Responsivo:** Adaptado para móviles, tablets y escritorio usando Tailwind CSS.
-* **🔒 Seguridad:** Variables de entorno protegidas y configuración de CORS para despliegue seguro.
+* **Diseño UI/UX Moderno:** Estética oscura con acentos verde neón, inspirada en terminales de código. Uso de `framer-motion` para animaciones suaves.
+* **Integración con GitHub API:** Los proyectos mostrados se obtienen dinámicamente desde mi cuenta de GitHub. ¡Si actualizo un repo, se actualiza el portafolio!
+* **Sistema de Contacto Full Stack:** Formulario funcional conectado a un Backend propio (Node/Express) que almacena los mensajes en una base de datos MongoDB en la nube.
+* **Totalmente Responsivo:** Adaptado para móviles, tablets y escritorio usando Tailwind CSS.
+* **Seguridad:** Variables de entorno protegidas y configuración de CORS para despliegue seguro.
+* **Sección "Sobre Mí" Dinámica:** Implementación innovadora que obtiene y renderiza en tiempo real el `README.md` de mi perfil de GitHub. Utiliza `react-markdown` y `rehype-raw` para transformar el Markdown/HTML remoto en componentes React estilizados, manteniendo la información siempre sincronizada sin tocar el código del portafolio.
+* **Navegación Glassmorphism:** Nueva barra de navegación (Navbar) responsiva con efectos de desenfoque y menú móvil integrado.
+* **Hero Section Renovado:** Diseño de alto impacto con animaciones orbitales en CSS/Framer Motion y tipografía jerarquizada para mejor UX.
 
 ---
 
-## 🛠️ Tecnologías Usadas
+## Tecnologías Usadas
 
 ### Frontend (Cliente)
 * **React + Vite:** Para una construcción rápida y modular.
@@ -49,7 +52,7 @@
 
 ---
 
-## 🚀 Instalación y Despliegue Local
+## Instalación y Despliegue Local
 
 Si quieres correr este proyecto en tu máquina local:
 
@@ -78,7 +81,7 @@ Si quieres correr este proyecto en tu máquina local:
 
 ---
 
-## 👨‍💻 Autor
+## Autor
 
 **Pablo Torres Lell**
 * Full Stack Developer en formación.
