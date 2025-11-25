@@ -9,7 +9,7 @@ const About = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  // URL RAW de tu README principal
+  // URL RAW README
   const README_URL = 'https://raw.githubusercontent.com/Pabloski-c/Pabloski-c/main/README.md';
   const CACHE_KEY = 'readme_cache';
   const CACHE_DURATION = 3600000; // 1 hora en milisegundos
