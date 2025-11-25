@@ -13,7 +13,6 @@ app.use(cors());
 app.use(express.json());
 
 // --- CONEXIÓN A MONGODB ---
-// Usamos la variable de entorno o una local para pruebas
 const MONGO_URI = process.env.MONGO_URI;
 
 mongoose.connect(MONGO_URI)
