@@ -9,7 +9,7 @@ const GITHUB_USERNAME = "Pabloski-c";
 const CV_URL ="https://drive.google.com/file/d/1GlDKJAuPB1h1TTzP1OPbYRX6Omep0a04/view?usp=drive_link";
 
 const Hero = () => {
-  // URL automática de tu foto de perfil
+  // URL: foto de perfil
   const profileImage = `https://github.com/${GITHUB_USERNAME}.png`;
 
   return (
@@ -58,7 +58,6 @@ const Hero = () => {
           </p>
 
           {/* --- SECCIÓN 1: ACCIONES PRINCIPALES --- */}
-          {/* w-max hace que el contenedor se ajuste al contenido, y gap-4 los separa */}
           <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-4">
             <a 
               href="#contacto"
@@ -107,7 +106,7 @@ const Hero = () => {
 
         </motion.div>
 
-        {/* COLUMNA DERECHA: FOTO (Grande) */}
+        {/* COLUMNA DERECHA: FOTO */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -117,7 +116,7 @@ const Hero = () => {
           {/* Círculo decorativo detrás (Aura) */}
           <div className="absolute w-80 h-80 md:w-96 md:h-96 bg-neon-green rounded-full blur-[100px] opacity-20 animate-pulse"></div>
           
-          {/* Imagen de perfil grande */}
+          {/* Imagen de perfil */}
           <div className="relative w-72 h-72 md:w-[450px] md:h-[450px] rounded-full p-2 bg-gradient-to-br from-gray-800 to-black border-2 border-neon-green shadow-neon overflow-hidden">
              <img 
                src={profileImage} 
