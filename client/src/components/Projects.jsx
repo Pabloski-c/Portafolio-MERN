@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaGithub, FaStar, FaCode, FaExternalLinkAlt } from 'react-icons/fa';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 
 const GITHUB_USERNAME = "Pabloski-c";
@@ -21,12 +22,12 @@ const Projects = () => {
           const isNotFork = !repo.fork; 
           // 2. Que tenga descripción (opcional)
           const hasDescription = repo.description; 
-          // 3. (OPCIONAL) Si usas topics: repo.topics.includes('portfolio')
+          // 3. (OPCIONAL) Usando topics: repo.topics.includes('portfolio')
           
           return isNotFork && hasDescription;
         });
 
-        // Tomamos los primeros 6 para no saturar
+        // Tomamos los primeros 6 repositorios filtrados
         setRepos(filteredRepos.slice(0, 6));
         setLoading(false);
       } catch (error) {
