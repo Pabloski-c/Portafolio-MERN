@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import { FaBars, FaTimes, FaCode } from 'react-icons/fa';
 
+/**
+ * Componente de la barra de navegación principal.
+ * 
+ * Incluye el logo, los enlaces de navegación para escritorio y un menú desplegable para dispositivos móviles.
+ * Utiliza `react-icons` para los iconos y `useState` para gestionar el estado del menú móvil.
+ */
 const Navbar = () => {
+  // Estado para controlar la visibilidad del menú móvil. `true` si está abierto, `false` si está cerrado.
   const [isOpen, setIsOpen] = useState(false);
 
+  // Array de objetos que define los enlaces de navegación.
   const links = [
     { id: 1, text: 'Inicio', href: '#' }, // href='#' lleva al inicio de la página
     { id: 4, text: 'Sobre Mí', href: '#sobre-mi' },
@@ -21,7 +29,7 @@ const Navbar = () => {
           <span>Pabloski<span className="text-neon-green">Dev</span></span>
         </div>
 
-        {/* LINKS DESKTOP */}
+        {/* LINKS DESKTOP - Se muestran solo en pantallas grandes (md y superiores) */}
         <ul className="hidden md:flex gap-8 text-sm font-mono tracking-wide">
           {links.map((link) => (
             <li key={link.id}>
@@ -35,12 +43,13 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* BOTÓN MENÚ MOVIL */}
+        {/* BOTÓN MENÚ MOVIL - Se muestra solo en pantallas pequeñas (inferiores a md) */}
         <div className="md:hidden text-2xl text-white cursor-pointer hover:text-neon-green" onClick={() => setIsOpen(!isOpen)}>
+          {/* Cambia el icono dependiendo de si el menú está abierto o cerrado */}
           {isOpen ? <FaTimes /> : <FaBars />}
         </div>
 
-        {/* MENÚ DESPLEGABLE MOVIL */}
+        {/* MENÚ DESPLEGABLE MOVIL - Se muestra solo si `isOpen` es true */}
         {isOpen && (
           <div className="absolute top-full left-0 w-full bg-dark-bg border-b border-gray-800 flex flex-col items-center py-6 md:hidden shadow-neon">
              {links.map((link) => (
@@ -48,6 +57,7 @@ const Navbar = () => {
                   key={link.id} 
                   href={link.href} 
                   className="py-3 text-gray-300 hover:text-neon-green font-mono uppercase tracking-widest"
+                  // Cierra el menú al hacer clic en un enlace
                   onClick={() => setIsOpen(false)}
                 >
                   {link.text}

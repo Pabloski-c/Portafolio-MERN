@@ -4,24 +4,36 @@ import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { motion } from 'framer-motion';
 
+/**
+ * Componente "Sobre Mí".
+ * 
+ * Este componente obtiene dinámicamente el contenido del archivo README.md del perfil de GitHub del usuario,
+ * lo almacena en caché en el localStorage para mejorar el rendimiento y reducir las peticiones a la API,
+ * y lo renderiza como HTML. También maneja los estados de carga y error.
+ */
 const About = () => {
-  const [content, setContent] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  // --- ESTADOS ---
+  const [content, setContent] = useState(''); // Almacena el contenido del README en formato Markdown.
+  const [loading, setLoading] = useState(true); // Indica si el contenido se está cargando.
+  const [error, setError] = useState(false); // Indica si ha ocurrido un error durante la obtención de datos.
 
-  // URL RAW README
+  // --- CONFIGURACIÓN ---
   const README_URL = 'https://raw.githubusercontent.com/Pabloski-c/Pabloski-c/main/README.md';
-  const CACHE_KEY = 'readme_cache';
-  const CACHE_DURATION = 3600000; // 1 hora en milisegundos
+  const CACHE_KEY = 'readme_cache'; // Clave para el almacenamiento en localStorage.
+  const CACHE_DURATION = 3600000; // 1 hora en milisegundos.
 
   useEffect(() => {
+    /**
+     * Obtiene el contenido del README.md, priorizando la caché local.
+     */
     const fetchReadme = async () => {
       const now = new Date().getTime();
       const cachedData = localStorage.getItem(CACHE_KEY);
 
-      // Intentar cargar desde caché si existe y es válido
+      // 1. INTENTAR CARGAR DESDE CACHÉ
       if (cachedData) {
         const { data, timestamp } = JSON.parse(cachedData);
+        // Comprueba si la caché no ha expirado.
         if (now - timestamp < CACHE_DURATION) {
           console.log("Cargando README desde caché local...");
           setContent(data);
@@ -30,14 +42,16 @@ const About = () => {
         }
       }
 
-      // Si no hay caché válido, pedir a GitHub
+      // 2. SI NO HAY CACHÉ VÁLIDO, OBTENER DE GITHUB
       try {
         const res = await fetch(README_URL);
         
+        // Manejo de errores de la API (ej. límite de peticiones).
         if (!res.ok) {
+          // Si la API de GitHub nos limita (status 429).
           if (res.status === 429) {
             console.warn("Límite de peticiones excedido. Usando caché antigua si existe.");
-            // Si nos bloquean, intentamos usar la caché vieja aunque esté caducada
+            // Como fallback, intenta usar la caché vieja aunque esté caducada.
             if (cachedData) {
               const { data } = JSON.parse(cachedData);
               setContent(data);
@@ -50,7 +64,7 @@ const About = () => {
 
         const text = await res.text();
         
-        // Guardar en caché nuevo contenido
+        // 3. GUARDAR EN CACHÉ EL NUEVO CONTENIDO
         localStorage.setItem(CACHE_KEY, JSON.stringify({
           data: text,
           timestamp: now
@@ -67,12 +81,13 @@ const About = () => {
     };
 
     fetchReadme();
-  }, []);
+  }, []); // El array vacío asegura que el efecto se ejecute solo una vez al montar el componente.
 
   return (
     <section id="sobre-mi" className="py-20 bg-[#0a0a0a] text-white relative">
       <div className="container mx-auto px-6 max-w-4xl">
         
+        {/* Título de la sección con animación */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -84,6 +99,7 @@ const About = () => {
           </h2>
         </motion.div>
 
+        {/* Renderizado condicional basado en el estado */}
         {loading ? (
           <div className="font-mono text-neon-green animate-pulse">Decodificando datos del usuario...</div>
         ) : error ? (
@@ -91,6 +107,7 @@ const About = () => {
             ⚠️ No se pudo cargar la información de GitHub en este momento. (Posible límite de tasa excedido, intenta más tarde).
           </div>
         ) : (
+          // Contenedor para el contenido renderizado desde Markdown.
           <motion.div 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -98,7 +115,9 @@ const About = () => {
             className="prose prose-invert prose-lg max-w-none"
           >
             <ReactMarkdown
+              // rehypeRaw permite interpretar HTML dentro del Markdown (¡usar con precaución y solo con fuentes de confianza!).
               rehypePlugins={[rehypeRaw]} 
+              // `components` permite sobreescribir y estilizar elementos HTML específicos.
               components={{
                 h1: ({node, ...props}) => <h3 className="text-2xl font-bold font-mono text-white mt-8 mb-4 border-l-4 border-neon-green pl-4" {...props} />,
                 h2: ({node, ...props}) => <h4 className="text-xl font-bold font-mono text-gray-200 mt-6 mb-3" {...props} />,
@@ -111,6 +130,7 @@ const About = () => {
                 
                 a: ({node, ...props}) => <a className="text-neon-green hover:underline font-mono" target="_blank" rel="noopener noreferrer" {...props} />,
                 
+                // Estiliza las imágenes para que se muestren pequeñas y en línea (ideal para iconos de tecnologías).
                 img: ({node, ...props}) => (
                   <img 
                     className="inline-block h-6 w-auto m-1 rounded-sm hover:scale-110 transition-transform select-none" 
@@ -118,6 +138,7 @@ const About = () => {
                   />
                 ),
                 
+                // Estiliza los bloques de código y el código en línea de manera diferente.
                 code: ({node, inline, className, children, ...props}) => (
                   <code className={`${inline ? 'bg-gray-800 text-neon-green px-1 py-0.5 rounded' : 'block bg-[#111] p-4 rounded-lg border border-gray-700 overflow-x-auto'} font-mono text-sm`} {...props}>
                     {children}

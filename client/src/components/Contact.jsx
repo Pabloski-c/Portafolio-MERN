@@ -2,27 +2,43 @@ import React, { useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 
+/**
+ * Componente de Contacto.
+ * 
+ * Renderiza un formulario que permite a los usuarios enviar un mensaje.
+ * Gestiona el estado del formulario, el envío de datos a un endpoint de la API
+ * y muestra mensajes de feedback al usuario (enviando, éxito, error).
+ */
 const Contact = () => {
-  // Estados para guardar los datos y el estado del envío
+  // --- ESTADOS ---
+  // Almacena los datos de los campos del formulario.
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
     mensaje: ''
   });
-  const [status, setStatus] = useState(null); // null | 'sending' | 'success' | 'error'
+  // Controla el estado del proceso de envío del formulario.
+  const [status, setStatus] = useState(null); // Posibles valores: null, 'sending', 'success', 'error'
 
-  // Función para actualizar los datos al escribir
+  /**
+   * Actualiza el estado `formData` cada vez que el usuario escribe en un campo.
+   * @param {React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>} e - El evento del cambio.
+   */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Función para enviar los datos al Backend
+  /**
+   * Gestiona el envío del formulario al backend.
+   * @param {React.FormEvent<HTMLFormElement>} e - El evento de envío del formulario.
+   */
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Evita que la página se recargue
-    setStatus('sending');
+    e.preventDefault(); // Evita que la página se recargue al enviar.
+    setStatus('sending'); // Cambia el estado para mostrar feedback de "enviando".
 
     try {
+      // Petición POST al endpoint de la API con los datos del formulario.
       const response = await fetch('https://portafolio-mern-api.onrender.com/api/contact', {
         method: 'POST',
         headers: {
@@ -31,14 +47,18 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
 
+      // Si la petición fue exitosa...
       if (response.ok) {
-        setStatus('success');
-        setFormData({ nombre: '', email: '', mensaje: '' }); // Limpiar formulario
-        setTimeout(() => setStatus(null), 3000); // Borrar mensaje de éxito después de 3s
+        setStatus('success'); // Cambia el estado a "éxito".
+        setFormData({ nombre: '', email: '', mensaje: '' }); // Limpia los campos del formulario.
+        // Después de 3 segundos, resetea el mensaje de estado.
+        setTimeout(() => setStatus(null), 3000); 
       } else {
+        // Si el servidor responde con un error.
         setStatus('error');
       }
     } catch (error) {
+      // Si hay un error de red o de conexión.
       console.error("Error de conexión:", error);
       setStatus('error');
     }
@@ -46,9 +66,11 @@ const Contact = () => {
 
   return (
     <section className="py-20 px-5 bg-dark-bg text-white relative overflow-hidden" id="contacto">
+      {/* Línea decorativa superior */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-neon-green to-transparent opacity-50"></div>
 
       <div className="container mx-auto max-w-4xl">
+        {/* Título de la sección */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -61,6 +83,7 @@ const Contact = () => {
           <p className="text-gray-400 mt-4">¿Tienes una idea o proyecto? Iniciemos conexión.</p>
         </motion.div>
 
+        {/* Contenedor del formulario */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -69,6 +92,7 @@ const Contact = () => {
         >
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
+              {/* Campo Nombre */}
               <div className="space-y-2">
                 <label className="text-neon-green font-mono text-sm">Usuario (Nombre)</label>
                 <input 
@@ -81,6 +105,7 @@ const Contact = () => {
                   className="w-full bg-dark-bg border border-gray-700 rounded p-3 text-white focus:border-neon-green focus:outline-none focus:shadow-[0_0_10px_rgba(0,255,65,0.3)] transition-all"
                 />
               </div>
+              {/* Campo Email */}
               <div className="space-y-2">
                 <label className="text-neon-green font-mono text-sm">Email de destino</label>
                 <input 
@@ -90,11 +115,12 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   placeholder="john@example.com" 
-                  className="w-full bg-dark-bg border border-gray-700 rounded p-3 text-white focus:border-neon-green focus:outline-none focus:shadow-[0_0_10px_rgba(0,255,65,0.3)] transition-all"
+                  className="w-full bg-dark-bg border border-gray-700 rounded p-3 text-white focus:border-neon-green focus:outline-none focus-shadow-[0_0_10px_rgba(0,255,65,0.3)] transition-all"
                 />
               </div>
             </div>
 
+            {/* Campo Mensaje */}
             <div className="space-y-2">
               <label className="text-neon-green font-mono text-sm">Mensaje encriptado</label>
               <textarea 
@@ -108,9 +134,12 @@ const Contact = () => {
               ></textarea>
             </div>
 
+            {/* Botón de envío */}
             <button 
               type="submit"
+              // Deshabilita el botón mientras se está enviando el formulario.
               disabled={status === 'sending'}
+              // Clases condicionales para estilizar el botón según el estado.
               className={`w-full py-4 border font-bold font-mono transition-all duration-300 rounded uppercase tracking-widest shadow-neon
                 ${status === 'sending' ? 'bg-gray-700 border-gray-700 cursor-wait text-gray-400' : 'bg-transparent border-neon-green text-neon-green hover:bg-neon-green hover:text-black'}
               `}
@@ -118,7 +147,7 @@ const Contact = () => {
               {status === 'sending' ? 'ENVIANDO DATOS...' : 'ENVIAR MENSAJE'}
             </button>
 
-            {/* Mensajes de feedback */}
+            {/* Mensajes de feedback para el usuario */}
             {status === 'success' && (
               <p className="text-neon-green text-center font-mono animate-pulse">
                 ¡Mensaje recibido en el servidor central!
