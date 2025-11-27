@@ -48,7 +48,7 @@ const Projects = () => {
           return isNotFork && hasDescription && isNotIgnored;
         });
 
-        // Tomamos los 5 más recientes
+        // Tomamos los N más recientes (definido en MAX_REPOS_TO_SHOW)
         setRepos(filteredRepos.slice(0, MAX_REPOS_TO_SHOW));
         setLoading(false);
       } catch (error) {

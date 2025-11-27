@@ -7,6 +7,8 @@
  * @property {string} theme - El color de fondo que se mostrará cuando el proyecto esté en el centro de la pantalla.
  * @property {string} subtitle - Un subtítulo o eslogan para el proyecto.
  * @property {string} image - La URL de la imagen de vista previa del proyecto.
+ * @property {string} accent - El color de acento para elementos destacados (bordes, texto especial).
+ * @property {string} color - El color principal del texto.
  * 
  * El objeto "default" se utiliza como fallback para cualquier repositorio que no tenga una configuración explícita.
  */

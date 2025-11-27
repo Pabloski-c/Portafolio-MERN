@@ -25,10 +25,15 @@ import { projectConfig } from '../constants/projectConfig';
 const ProjectCard = ({ repo, setBgColor }) => {
   const ref = useRef(null);
   
+  // El hook useInView detecta si el componente está en el viewport.
+  // El margen de "-50%" significa que se considera "en vista" solo cuando está en el centro vertical de la pantalla.
   const isInView = useInView(ref, { margin: "-50% 0px -50% 0px" });
 
+  // Obtiene la configuración específica para este proyecto o usa la configuración por defecto como fallback.
   const config = projectConfig[repo.name] || projectConfig["default"];
 
+  // Efecto que se activa cuando el componente entra o sale del área central de la vista.
+  // Si está en el centro, llama a setBgColor para cambiar el fondo del componente padre.
   useEffect(() => {
     if (isInView) {
       setBgColor(config.theme);

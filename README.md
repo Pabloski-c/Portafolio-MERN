@@ -32,7 +32,6 @@
 * **Hero Section Mejorado:** Diseño de alto impacto con tipografía y espaciado cuidadosamente ajustados para una perfecta visualización en cualquier dispositivo, desde móviles hasta pantallas grandes.
 * **Navegación Optimizada:** Barra de navegación con efecto "glassmorphism" y un menú móvil rediseñado para una mejor experiencia de usuario en pantallas táctiles.
 * **Sistema de Contacto Full Stack:** Formulario funcional conectado a un Backend propio (Node/Express) que almacena los mensajes en una base de datos MongoDB en la nube.
-* **Sección "Sobre Mí" Sincronizada:** Implementación que obtiene y renderiza en tiempo real el `README.md` de mi perfil de GitHub, manteniendo la información siempre actualizada.
 
 ---
 
@@ -53,30 +52,46 @@
 
 ## Instalación y Despliegue Local
 
-Si quieres correr este proyecto en tu máquina local:
+Para ejecutar este proyecto en tu máquina local, sigue estos pasos:
 
-1.  **Clonar el repositorio**
-    ```bash
-    git clone https://github.com/Pabloski-c/Portafolio-MERN.git
-    cd Portafolio-MERN
-    ```
+### Prerrequisitos
+* Asegúrate de tener instalado [Node.js](https://nodejs.org/) (versión 14 o superior).
+* npm o yarn.
 
-2.  **Configurar el Backend**
-    ```bash
-    cd server
-    npm install
-    # Crea un archivo .env y agrega:
-    # MONGO_URI=tu_string_de_conexion_mongodb
-    # PORT=5000
-    npm run dev
-    ```
+### 1. Clonar el Repositorio
+```bash
+git clone https://github.com/Pabloski-c/Portafolio-MERN.git
+cd Portafolio-MERN
+```
 
-3.  **Configurar el Frontend**
-    ```bash
-    cd ../client
-    npm install
-    npm run dev
-    ```
+### 2. Configurar el Backend
+```bash
+cd server
+npm install
+```
+Crea un archivo `.env` en la raíz de la carpeta `/server` y añade tu clave de conexión de MongoDB:
+```
+MONGO_URI=tu_string_de_conexion_a_mongodb_atlas
+PORT=5000
+```
+Finalmente, inicia el servidor de desarrollo:
+```bash
+# Inicia el servidor backend (normalmente en http://localhost:5000)
+npm run dev
+```
+
+### 3. Configurar el Frontend
+Abre una nueva terminal.
+```bash
+cd client
+npm install
+```
+Inicia el cliente de desarrollo:
+```bash
+# Inicia el cliente de React (normalmente en http://localhost:5173)
+npm run dev
+```
+¡Y listo! La aplicación debería estar corriendo en tu entorno local.
 
 ---
 
