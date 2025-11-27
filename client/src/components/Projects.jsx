@@ -5,6 +5,7 @@ import ProjectCard from './ProjectCard';
 
 // --- CONFIGURACIÓN ---
 const GITHUB_USERNAME = "Pabloski-c";
+const MAX_REPOS_TO_SHOW = 5;
 
 // LISTA NEGRA: No queremos mostrarlos
 const IGNORED_REPOS = ["Pabloski-c"]; 
@@ -47,7 +48,7 @@ const Projects = () => {
         });
 
         // Tomamos los 5 más recientes
-        setRepos(filteredRepos.slice(0, 5));
+        setRepos(filteredRepos.slice(0, MAX_REPOS_TO_SHOW));
         setLoading(false);
       } catch (error) {
         console.error("Error fetching repos:", error);

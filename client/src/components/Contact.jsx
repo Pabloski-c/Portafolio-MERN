@@ -10,6 +10,9 @@ import { motion } from 'framer-motion';
  * y muestra mensajes de feedback al usuario (enviando, éxito, error).
  */
 const Contact = () => {
+  // --- CONFIGURACIÓN ---
+  const API_ENDPOINT = 'https://portafolio-mern-api.onrender.com/api/contact';
+
   // --- ESTADOS ---
   // Almacena los datos de los campos del formulario.
   const [formData, setFormData] = useState({
@@ -39,7 +42,7 @@ const Contact = () => {
 
     try {
       // Petición POST al endpoint de la API con los datos del formulario.
-      const response = await fetch('https://portafolio-mern-api.onrender.com/api/contact', {
+      const response = await fetch(API_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
