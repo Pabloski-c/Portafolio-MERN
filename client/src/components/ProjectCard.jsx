@@ -1,7 +1,7 @@
 /**
  * @file ProjectCard.jsx
- * @description A component to display a single project with details fetched from a repository object.
- * It changes the background color of a parent element when it scrolls into view.
+ * @description Componente para mostrar un único proyecto con detalles obtenidos de un objeto de repositorio.
+ * Cambia el color de fondo de un elemento padre cuando se desplaza a la vista.
  */
 import React, { useRef, useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars
@@ -10,22 +10,21 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { projectConfig } from '../constants/projectConfig';
 
 /**
- * Displays a card for a single project.
+ * Muestra una tarjeta para un único proyecto.
  * 
- * @param {object} props - The component props.
- * @param {object} props.repo - The repository object, likely from a source like the GitHub API.
- * @param {string} props.repo.name - The name of the repository.
- * @param {string} props.repo.description - The description of the repository.
- * @param {string} props.repo.html_url - The URL to the repository's source code.
- * @param {string} [props.repo.homepage] - The optional URL to the deployed project demo.
- * @param {string} [props.repo.language] - The primary programming language of the repository.
- * @param {function} props.setBgColor - A callback function to update the background color of a parent component.
- * @returns {JSX.Element} The rendered project card component.
+ * @param {object} props - Las props del componente.
+ * @param {object} props.repo - El objeto del repositorio, probablemente de una fuente como la API de GitHub.
+ * @param {string} props.repo.name - El nombre del repositorio.
+ * @param {string} props.repo.description - La descripción del repositorio.
+ * @param {string} props.repo.html_url - La URL al código fuente del repositorio.
+ * @param {string} [props.repo.homepage] - La URL opcional a la demostración del proyecto desplegado.
+ * @param {string} [props.repo.language] - El lenguaje de programación principal del repositorio.
+ * @param {function} props.setBgColor - Una función de callback para actualizar el color de fondo de un componente padre.
+ * @returns {JSX.Element} El componente de tarjeta de proyecto renderizado.
  */
 const ProjectCard = ({ repo, setBgColor }) => {
   const ref = useRef(null);
   
-  // Triggers the view change when the center of the element hits the vertical center of the viewport.
   const isInView = useInView(ref, { margin: "-50% 0px -50% 0px" });
 
   const config = projectConfig[repo.name] || projectConfig["default"];
