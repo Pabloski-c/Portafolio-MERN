@@ -51,13 +51,12 @@ const Navbar = () => {
 
         {/* MENÚ DESPLEGABLE MOVIL - Se muestra solo si `isOpen` es true */}
         {isOpen && (
-          <div className="absolute top-full left-0 w-full bg-dark-bg border-b border-gray-800 flex flex-col items-center py-6 md:hidden shadow-neon">
-             {links.map((link) => (
+          <div className="absolute top-full left-0 w-full bg-dark-bg/95 backdrop-blur-xl border-b border-gray-800 flex flex-col items-center py-8 md:hidden shadow-neon z-50">
+              {links.map((link) => (
                 <a 
                   key={link.id} 
                   href={link.href} 
-                  className="py-3 text-gray-300 hover:text-neon-green font-mono uppercase tracking-widest"
-                  // Cierra el menú al hacer clic en un enlace
+                  className="py-4 w-full text-center text-lg text-gray-300 hover:text-neon-green hover:bg-white/5 font-mono uppercase tracking-widest transition-all"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.text}

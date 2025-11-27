@@ -85,7 +85,7 @@ const About = () => {
 
   return (
     <section id="sobre-mi" className="py-20 bg-[#0a0a0a] text-white relative">
-      <div className="container mx-auto px-6 max-w-4xl">
+      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
         
         {/* Título de la sección con animación */}
         <motion.div 

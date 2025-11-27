@@ -21,12 +21,13 @@ const Hero = () => {
   const profileImage = `https://github.com/${GITHUB_USERNAME}.png`;
 
   return (
-    <section className="min-h-screen bg-dark-bg text-white flex items-center justify-center px-5 relative overflow-hidden pt-20 md:pt-0">
+    <section className="min-h-screen bg-dark-bg text-white flex items-center justify-center px-4 sm:px-6 relative overflow-hidden pt-24 md:pt-0"> {/* Padding lateral ajustado */}
       
       {/* Fondo con efecto de grilla sutil y decorativo */}
       <div className="absolute inset-0 opacity-10 pointer-events-none bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
-      <div className="container mx-auto grid md:grid-cols-2 gap-10 items-center z-10">
+      {/* Cambiamos gap-10 a gap-8 para tablets */}
+      <div className="container mx-auto grid md:grid-cols-2 gap-8 lg:gap-10 items-center z-10">
         
         {/* --- COLUMNA IZQUIERDA: TEXTO Y LLAMADAS A LA ACCIÓN --- */}
         <motion.div 
@@ -34,18 +35,19 @@ const Hero = () => {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-6 text-center md:text-left"
+          className="space-y-4 md:space-y-6 text-center md:text-left"
         >
-          <h2 className="text-xl md:text-2xl font-mono text-neon-green font-bold tracking-wider">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-mono text-neon-green font-bold tracking-wider">
             &lt;Hola mundo /&gt;
           </h2>
           
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+          {/* Título adaptable: Pequeño en móvil, Medio en Tablet, Grande en Desktop */}
+          <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-7xl font-bold tracking-tight">
             Soy <span className="text-gray-300">Pablo</span>
           </h1>
 
           {/* Animación de texto que simula escritura */}
-          <div className="text-2xl md:text-4xl font-semibold text-gray-400 h-[50px]">
+          <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-400 h-[40px] md:h-[50px]">
             <span>I'm a </span>
             <TypeAnimation
               sequence={[
@@ -63,16 +65,16 @@ const Hero = () => {
             />
           </div>
 
-          <p className="text-gray-400 max-w-lg mx-auto md:mx-0 text-lg leading-relaxed">
-            Transformando ideas en código. Especializado en el stack MERN y apasionado por el desarrollo.
+          <p className="text-gray-400 max-w-lg mx-auto md:mx-0 text-base sm:text-lg leading-relaxed">
+             Transformando ideas en código...
           </p>
 
           {/* --- SECCIÓN 1: ACCIONES PRINCIPALES (Botones) --- */}
-          <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-4">
+          <div className="flex flex-wrap gap-3 sm:gap-4 justify-center md:justify-start pt-4">
             {/* Botón para ir a la sección de contacto */}
             <a 
               href="#contacto"
-              className="w-max px-6 py-3 border-2 border-neon-green text-neon-green font-mono hover:bg-neon-green hover:text-black transition-all duration-300 rounded shadow-neon font-bold text-sm md:text-base flex items-center justify-center"
+              className="w-max px-6 py-3 border-2 border-neon-green text-neon-green font-mono hover:bg-neon-green hover:text-black transition-all duration-300 rounded shadow-neon font-bold text-sm sm:text-base flex items-center justify-center"
             >
               Contáctame
             </a>
@@ -82,7 +84,7 @@ const Hero = () => {
               href={CV_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-max px-6 py-3 border-2 border-gray-600 text-gray-300 font-mono hover:border-white hover:text-white transition-all duration-300 rounded flex items-center gap-2 text-sm md:text-base"
+              className="w-max px-6 py-3 border-2 border-gray-600 text-gray-300 font-mono hover:border-white hover:text-white transition-all duration-300 rounded flex items-center gap-2 text-sm sm:text-base"
             >
               <FaFileDownload /> CV
             </a>
@@ -123,13 +125,13 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="flex justify-centerMQ relative"
+          className="flex justify-center relative mt-8 md:mt-0"
         >
           {/* Aura decorativa detrás de la imagen con animación de pulso */}
-          <div className="absolute w-80 h-80 md:w-96 md:h-96 bg-neon-green rounded-full blur-[100px] opacity-20 animate-pulse"></div>
+          <div className="absolute w-64 h-64 sm:w-80 sm:h-80 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-neon-green rounded-full blur-[80px] opacity-20 animate-pulse"></div>
           
           {/* Contenedor de la imagen de perfil con borde y sombra */}
-          <div className="relative w-72 h-72 md:w-[450px] md:h-[450px] rounded-full p-2 bg-gradient-to-br from-gray-800 to-black border-2 border-neon-green shadow-neon overflow-hidden">
+          <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[450px] lg:h-[450px] rounded-full p-2 bg-gradient-to-br from-gray-800 to-black border-2 border-neon-green shadow-neon overflow-hidden">
              <img 
                src={profileImage} 
                alt="Profile" 
