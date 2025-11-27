@@ -26,14 +26,13 @@
 
 ## Características Principales
 
-* **Diseño UI/UX Moderno:** Estética oscura con acentos verde neón, inspirada en terminales de código. Uso de `framer-motion` para animaciones suaves.
-* **Integración con GitHub API:** Los proyectos mostrados se obtienen dinámicamente desde mi cuenta de GitHub. ¡Si actualizo un repo, se actualiza el portafolio!
+* **Diseño UI/UX Moderno:** Estética oscura con acentos verde neón, inspirada en terminales de código. Uso de `framer-motion` para animaciones suaves y una experiencia de usuario fluida.
+* **Integración Dinámica con GitHub API:** La sección de proyectos se alimenta en tiempo real desde la API de GitHub, mostrando mis repositorios más recientes. Se filtran automáticamente para excluir forks y mostrar solo proyectos con descripción, asegurando que el contenido sea siempre relevante.
+* **Carrusel de Tecnologías Animado:** Una barra de iconos con desplazamiento infinito (efecto "ping-pong") que muestra mi stack tecnológico de una manera visualmente atractiva, construida con `framer-motion`.
+* **Hero Section Mejorado:** Diseño de alto impacto con tipografía y espaciado cuidadosamente ajustados para una perfecta visualización en cualquier dispositivo, desde móviles hasta pantallas grandes.
+* **Navegación Optimizada:** Barra de navegación con efecto "glassmorphism" y un menú móvil rediseñado para una mejor experiencia de usuario en pantallas táctiles.
 * **Sistema de Contacto Full Stack:** Formulario funcional conectado a un Backend propio (Node/Express) que almacena los mensajes en una base de datos MongoDB en la nube.
-* **Totalmente Responsivo:** Adaptado para móviles, tablets y escritorio usando Tailwind CSS.
-* **Seguridad:** Variables de entorno protegidas y configuración de CORS para despliegue seguro.
-* **Sección "Sobre Mí" Dinámica:** Implementación innovadora que obtiene y renderiza en tiempo real el `README.md` de mi perfil de GitHub. Utiliza `react-markdown` y `rehype-raw` para transformar el Markdown/HTML remoto en componentes React estilizados, manteniendo la información siempre sincronizada sin tocar el código del portafolio.
-* **Navegación Glassmorphism:** Nueva barra de navegación (Navbar) responsiva con efectos de desenfoque y menú móvil integrado.
-* **Hero Section Renovado:** Diseño de alto impacto con animaciones orbitales en CSS/Framer Motion y tipografía jerarquizada para mejor UX.
+* **Sección "Sobre Mí" Sincronizada:** Implementación que obtiene y renderiza en tiempo real el `README.md` de mi perfil de GitHub, manteniendo la información siempre actualizada.
 
 ---
 
