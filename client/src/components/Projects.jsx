@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import ProjectCard from './ProjectCard';
+import SideTechStack from './SideTechStack';
 
 // --- CONFIGURACIÓN ---
 const GITHUB_USERNAME = "Pabloski-c";
@@ -62,32 +63,48 @@ const Projects = () => {
   return (
     <motion.section 
       id="proyectos"
-      className="transition-colors duration-700 ease-in-out relative py-10"
+      className="transition-colors duration-700 ease-in-out relative min-h-screen"
       animate={{ backgroundColor: bgColor }}
     >
-      <div className="container mx-auto">
+      {/* Contenedor Flex para: BarraIzq - Contenido - BarraDer */}
+      <div className="flex justify-between">
         
-        <div className="text-center pt-12 pb-4">
-          <h2 className="text-3xl md:text-4xl font-mono font-bold text-white inline-block border-b-4 border-neon-green pb-2">
-            &lt;Proyectos /&gt;
-          </h2>
+        {/* --- BARRA IZQUIERDA (Sticky) --- */}
+        <div className="hidden lg:block sticky top-0 h-screen z-20">
+          <SideTechStack direction="normal" />
         </div>
 
-        {loading ? (
-          <div className="h-screen flex items-center justify-center text-neon-green font-mono animate-pulse">
-            Inicializando galería de proyectos...
+        {/* --- CONTENIDO CENTRAL (Proyectos) --- */}
+        <div className="flex-1 container mx-auto px-4 md:px-10 py-10">
+          
+          <div className="text-center pt-12 pb-4">
+            <h2 className="text-3xl md:text-4xl font-mono font-bold text-white inline-block border-b-4 border-neon-green pb-2">
+              &lt;Proyectos /&gt;
+            </h2>
           </div>
-        ) : (
-          <div className="flex flex-col relative z-10">
-            {repos.map((repo) => (
-              <ProjectCard 
-                key={repo.id} 
-                repo={repo} 
-                setBgColor={setBgColor} 
-              />
-            ))}
-          </div>
-        )}
+
+          {loading ? (
+            <div className="h-screen flex items-center justify-center text-neon-green font-mono animate-pulse">
+              Inicializando galería de proyectos...
+            </div>
+          ) : (
+            <div className="flex flex-col relative z-10">
+              {repos.map((repo) => (
+                <ProjectCard 
+                  key={repo.id} 
+                  repo={repo} 
+                  setBgColor={setBgColor} 
+                />
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* --- BARRA DERECHA (Sticky) --- */}
+        <div className="hidden lg:block sticky top-0 h-screen z-20">
+          <SideTechStack direction="reverse" />
+        </div>
+
       </div>
     </motion.section>
   );
