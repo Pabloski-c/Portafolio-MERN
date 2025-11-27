@@ -5,6 +5,17 @@ import { motion } from 'framer-motion';
 
 const GITHUB_USERNAME = "Pabloski-c";
 
+/**
+ * Componente Projects.
+ * 
+ * Muestra una selección de los proyectos más recientes de un usuario de GitHub.
+ * 
+ * - Realiza una llamada a la API de GitHub para obtener los repositorios del usuario especificado en `GITHUB_USERNAME`.
+ * - Filtra los repositorios para mostrar solo aquellos que no son 'forks' y que tienen una descripción.
+ * - Muestra los 6 proyectos más recientes según la fecha de actualización.
+ * - Presenta cada proyecto en una tarjeta con su nombre, descripción, estrellas, lenguaje principal y enlaces al código y al 'demo' (si está disponible).
+ * - Muestra un estado de "cargando" mientras se obtienen los datos.
+ */
 const Projects = () => {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
