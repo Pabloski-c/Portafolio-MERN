@@ -80,7 +80,7 @@ const Contact = () => {
           <h2 className="text-3xl md:text-4xl font-mono font-bold text-neon-green inline-block border-b-4 border-neon-green pb-2">
             &lt;Contacto /&gt;
           </h2>
-          <p className="text-gray-400 mt-4">¿Tienes una idea o proyecto? Iniciemos conexión.</p>
+          <p className="text-gray-400 mt-4">¿Tienes una idea o proyecto? Contáctame.</p>
         </motion.div>
 
         {/* Contenedor del formulario */}
