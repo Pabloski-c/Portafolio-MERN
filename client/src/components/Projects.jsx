@@ -1,24 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { FaGithub, FaStar, FaCode, FaExternalLinkAlt } from 'react-icons/fa';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
+import ProjectCard from './ProjectCard';
 
+// --- CONFIGURACIÓN ---
 const GITHUB_USERNAME = "Pabloski-c";
 
+// LISTA NEGRA: No queremos mostrarlos
+const IGNORED_REPOS = ["Pabloski-c"]; 
+
+// LISTA BLANCA: Forks que quieres mostrar
+const SHOW_FORKS = ["HermanosJota"];
+
 /**
- * Componente Projects.
- * 
- * Muestra una selección de los proyectos más recientes de un usuario de GitHub.
- * 
- * - Realiza una llamada a la API de GitHub para obtener los repositorios del usuario especificado en `GITHUB_USERNAME`.
- * - Filtra los repositorios para mostrar solo aquellos que no son 'forks' y que tienen una descripción.
- * - Muestra los 6 proyectos más recientes según la fecha de actualización.
- * - Presenta cada proyecto en una tarjeta con su nombre, descripción, estrellas, lenguaje principal y enlaces al código y al 'demo' (si está disponible).
- * - Muestra un estado de "cargando" mientras se obtienen los datos.
+ * Componente principal de la sección de Proyectos.
+ * Orquesta la obtención de datos y el renderizado de la lista de proyectos.
+ *
+ * Características:
+ * - Gestiona el estado de los repositorios (`repos`), el estado de carga (`loading`) y el color de fondo dinámico (`bgColor`).
+ * - Realiza una llamada a la API de GitHub para obtener los repositorios del usuario.
+ * - Filtra los repositorios para mostrar solo los más relevantes:
+ *   - Excluye repositorios en la lista negra `IGNORED_REPOS`.
+ *   - Excluye repositorios sin descripción.
+ *   - Por defecto, excluye forks, pero permite forks específicos listados en `SHOW_FORKS`.
+ * - Renderiza una lista vertical de componentes `ProjectCard`.
+ * - La sección principal (`motion.section`) anima su color de fondo (`backgroundColor`) según el `ProjectCard` visible.
  */
 const Projects = () => {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [bgColor, setBgColor] = useState("#0a0a0a");
 
   useEffect(() => {
     const fetchRepos = async () => {
@@ -27,12 +38,16 @@ const Projects = () => {
         const data = await response.json();
 
         const filteredRepos = data.filter(repo => {
-          const isNotFork = !repo.fork; 
-          const hasDescription = repo.description; 
-          return isNotFork && hasDescription;
+          const isNotFork = !repo.fork || SHOW_FORKS.includes(repo.name); 
+          
+          const hasDescription = repo.description;
+          const isNotIgnored = !IGNORED_REPOS.includes(repo.name);
+
+          return isNotFork && hasDescription && isNotIgnored;
         });
 
-        setRepos(filteredRepos.slice(0, 6));
+        // Tomamos los 5 más recientes
+        setRepos(filteredRepos.slice(0, 5));
         setLoading(false);
       } catch (error) {
         console.error("Error fetching repos:", error);
@@ -44,99 +59,36 @@ const Projects = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-dark-bg text-white px-5" id="proyectos">
+    <motion.section 
+      id="proyectos"
+      className="transition-colors duration-700 ease-in-out relative py-10"
+      animate={{ backgroundColor: bgColor }}
+    >
       <div className="container mx-auto">
         
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-mono font-bold text-neon-green inline-block border-b-4 border-neon-green pb-2">
+        <div className="text-center pt-12 pb-4">
+          <h2 className="text-3xl md:text-4xl font-mono font-bold text-white inline-block border-b-4 border-neon-green pb-2">
             &lt;Proyectos /&gt;
           </h2>
-          <p className="text-gray-400 mt-4">Extraídos directamente de mi API de GitHub</p>
-        </motion.div>
+        </div>
 
         {loading ? (
-          <div className="text-center text-neon-green font-mono animate-pulse">
-            Cargando datos del sistema...
+          <div className="h-screen flex items-center justify-center text-neon-green font-mono animate-pulse">
+            Inicializando galería de proyectos...
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {repos.map((repo, index) => (
-              <motion.div
-                key={repo.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="group relative bg-[#111] p-6 rounded-xl border border-gray-800 hover:border-neon-green transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,65,0.15)] flex flex-col justify-between h-full"
-              >
-                <div>
-                  {/* --- HEADER: Icono Izquierda / Estrella Derecha --- */}
-                  {/* Cambiamos 'justify-between' por 'flex' normal */}
-                  <div className="flex items-center pb-4 mb-4 border-b border-gray-800">
-                    
-                    {/* Icono de Código (Pegado a la izquierda) */}
-                    <FaCode className="text-2xl text-neon-green" />
-
-                    {/* Estrella (Empujada a la derecha con ml-auto) */}
-                    {/* El gap-2 asegura que el número se aleje lo justo de la estrella */}
-                    <div className="ml-auto flex items-center gap-2 text-sm text-gray-400 font-mono">
-                      <FaStar className="text-yellow-500" />
-                      <span>{repo.stargazers_count}</span>
-                    </div>
-                  </div>
-
-                  {/* Título y Descripción */}
-                  <h3 className="text-xl font-bold font-mono mb-3 text-white group-hover:text-neon-green transition-colors truncate">
-                    {repo.name}
-                  </h3>
-                  <p className="text-gray-400 text-sm mb-6 line-clamp-3 leading-relaxed">
-                    {repo.description || "Sin descripción disponible."}
-                  </p>
-                </div>
-
-                <div>
-                  {/* --- TECNOLOGÍAS --- */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {repo.language && (
-                      <span className="px-3 py-1 text-xs font-semibold border border-neon-green/30 bg-neon-green/5 text-neon-green rounded-full w-fit">
-                        {repo.language}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* --- BOTONES --- */}
-                  <div className="flex gap-3 pt-5 border-t border-gray-800">
-                    <a 
-                      href={repo.html_url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 text-xs font-bold border border-gray-600 rounded-lg text-gray-300 hover:border-neon-green hover:text-neon-green hover:bg-neon-green/10 transition-all w-fit"
-                    >
-                      <FaGithub className="text-sm" /> Código
-                    </a>
-                    
-                    {repo.homepage && (
-                      <a 
-                        href={repo.homepage} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 text-xs font-bold border border-gray-600 rounded-lg text-gray-300 hover:border-neon-green hover:text-neon-green hover:bg-neon-green/10 transition-all w-fit"
-                      >
-                        <FaExternalLinkAlt className="text-sm" /> Demo
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
+          <div className="flex flex-col relative z-10">
+            {repos.map((repo) => (
+              <ProjectCard 
+                key={repo.id} 
+                repo={repo} 
+                setBgColor={setBgColor} 
+              />
             ))}
           </div>
         )}
       </div>
-    </section>
+    </motion.section>
   );
 };
 
