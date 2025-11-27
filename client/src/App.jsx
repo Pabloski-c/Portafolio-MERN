@@ -2,6 +2,7 @@ import './App.css';
 // Componentes
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import TechStack from './components/TechStack';
 import About from './components/About';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
@@ -24,6 +25,7 @@ function App() {
       {/* El contenido principal de la página */}
       <main>
         <Hero />
+        <TechStack />
         <About />
         <Projects />
         <Contact />
