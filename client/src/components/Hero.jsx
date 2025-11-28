@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 // --- CONFIGURACIÓN ---
 // Estas variables facilitan la actualización de datos clave sin tener que buscarlos en el código.
 const GITHUB_USERNAME = "Pabloski-c"; // Tu nombre de usuario de GitHub para la foto de perfil.
-const CV_URL ="https://drive.google.com/file/d/1GlDKJAuPB1h1TTzP1OPbYRX6Omep0a04/view?usp=drive_link"; // Enlace directo a tu CV.
+const CV_URL ="https://drive.google.com/file/d/1-8RXaBkZCyy5PAYSkNyELoqI5iLudvq_/view?usp=drive_link"; // Enlace directo a tu CV.
 
 /**
  * Componente Hero (sección principal).
