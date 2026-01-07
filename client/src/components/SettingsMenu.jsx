@@ -4,6 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaCog, FaGlobe, FaFont, FaAdjust } from 'react-icons/fa';
 import { useSettings } from '../context/SettingsContext';
 
+/**
+ * Componente del menú de configuración.
+ * 
+ * Este componente proporciona una interfaz de usuario flotante para ajustar las configuraciones de accesibilidad y preferencia.
+ * Permite cambiar el idioma, aumentar el tamaño de la fuente y activar el modo de alto contraste.
+ * Utiliza el `useSettings` hook para interactuar con el `SettingsContext`.
+ */
 const SettingsMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { language, toggleLanguage, increaseFont, toggleContrast, highContrast, t } = useSettings();

@@ -60,7 +60,7 @@ Para ejecutar este proyecto en tu máquina local, sigue estos pasos:
 
 ### 1. Clonar el Repositorio
 ```bash
-git clone https://github.com/Pabloski-c/Portafolio-MERN.git
+git clone https://github.com/Pabloski-c/Portafolio-MERN
 cd Portafolio-MERN
 ```
 
@@ -74,9 +74,12 @@ Crea un archivo `.env` en la raíz de la carpeta `/server` y añade tu clave de 
 MONGO_URI=tu_string_de_conexion_a_mongodb_atlas
 PORT=5000
 ```
-Finalmente, inicia el servidor de desarrollo:
+Finalmente, inicia el servidor:
 ```bash
-# Inicia el servidor backend (normalmente en http://localhost:5000)
+# Inicia el servidor backend para producción (en http://localhost:5000)
+npm start
+
+# O para desarrollo con reinicio automático (nodemon):
 npm run dev
 ```
 
@@ -88,7 +91,7 @@ npm install
 ```
 Inicia el cliente de desarrollo:
 ```bash
-# Inicia el cliente de React (normalmente en http://localhost:5173)
+# Inicia el cliente de React con Vite (normalmente en http://localhost:5173)
 npm run dev
 ```
 ¡Y listo! La aplicación debería estar corriendo en tu entorno local.
@@ -97,7 +100,7 @@ npm run dev
 
 ## Autor
 
-**Pablo Torres Lell**
+**[Pablo Torres Lell](https://github.com/Pabloski-c)**
 * Full Stack Developer en formación.
 * Estudiante de Ingeniería Informática.
 
