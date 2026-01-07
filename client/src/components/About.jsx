@@ -13,22 +13,26 @@ import { useSettings } from '../context/SettingsContext';
  * y lo renderiza como HTML. También maneja los estados de carga y error.
  */
 const About = () => {
-  const { t } = useSettings();
+  const { t, language } = useSettings();
   // --- ESTADOS ---
   const [content, setContent] = useState(''); // Almacena el contenido del README en formato Markdown.
   const [loading, setLoading] = useState(true); // Indica si el contenido se está cargando.
   const [error, setError] = useState(false); // Indica si ha ocurrido un error durante la obtención de datos.
 
-  // --- CONFIGURACIÓN ---
-  const README_URL = 'https://raw.githubusercontent.com/Pabloski-c/Pabloski-c/main/README.md';
-  const CACHE_KEY = 'readme_cache'; // Clave para el almacenamiento en localStorage.
-  const CACHE_DURATION = 3600000; // 1 hora en milisegundos.
-
   useEffect(() => {
+    // --- CONFIGURACIÓN ---
+    const README_URL_ES = 'https://raw.githubusercontent.com/Pabloski-c/Pabloski-c/main/README.md';
+    const README_URL_EN = 'https://raw.githubusercontent.com/Pabloski-c/Pabloski-c/main/README.en.md';
+    const README_URL = language === 'en' ? README_URL_EN : README_URL_ES;
+    
+    const CACHE_KEY = `readme_cache_${language}`; // Clave para el almacenamiento en localStorage.
+    const CACHE_DURATION = 3600000; // 1 hora en milisegundos.
+
     /**
      * Obtiene el contenido del README.md, priorizando la caché local.
      */
     const fetchReadme = async () => {
+      setLoading(true); // Inicia la carga al cambiar de idioma
       const now = new Date().getTime();
       const cachedData = localStorage.getItem(CACHE_KEY);
 
@@ -37,7 +41,7 @@ const About = () => {
         const { data, timestamp } = JSON.parse(cachedData);
         // Comprueba si la caché no ha expirado.
         if (now - timestamp < CACHE_DURATION) {
-          console.log("Cargando README desde caché local...");
+          console.log(`Cargando README (${language}) desde caché local...`);
           setContent(data);
           setLoading(false);
           return;
@@ -83,7 +87,7 @@ const About = () => {
     };
 
     fetchReadme();
-  }, []); // El array vacío asegura que el efecto se ejecute solo una vez al montar el componente.
+  }, [language]); // El efecto se ejecuta cuando cambia el idioma.
 
   return (
     <section id="sobre-mi" className="py-20 bg-[#0a0a0a] text-white relative">
