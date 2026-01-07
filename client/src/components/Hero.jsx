@@ -56,7 +56,8 @@ const Hero = () => {
           <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-400 h-[40px] md:h-[50px]">
             <span>{t.hero.iAmA}</span>
             <TypeAnimation
-              sequence={t.hero.typeAnimation}
+              key={language}
+              sequence={[...t.hero.typeAnimation]}
               wrapper="span"
               speed={50}
               className="text-neon-green border-b-4 border-neon-green"
