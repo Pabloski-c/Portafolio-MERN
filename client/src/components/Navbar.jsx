@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaBars, FaTimes, FaCode } from 'react-icons/fa';
+import { useSettings } from '../context/SettingsContext';
 
 /**
  * Componente de la barra de navegación principal.
@@ -8,15 +9,16 @@ import { FaBars, FaTimes, FaCode } from 'react-icons/fa';
  * Utiliza `react-icons` para los iconos y `useState` para gestionar el estado del menú móvil.
  */
 const Navbar = () => {
+  const { t } = useSettings();
   // Estado para controlar la visibilidad del menú móvil. `true` si está abierto, `false` si está cerrado.
   const [isOpen, setIsOpen] = useState(false);
 
   // Array de objetos que define los enlaces de navegación.
   const links = [
-    { id: 1, text: 'Inicio', href: '#' }, // href='#' lleva al inicio de la página
-    { id: 4, text: 'Sobre Mí', href: '#sobre-mi' },
-    { id: 2, text: 'Proyectos', href: '#proyectos' },
-    { id: 3, text: 'Contacto', href: '#contacto' },
+    { id: 1, text: t.navbar.home, href: '#' }, // href='#' lleva al inicio de la página
+    { id: 4, text: t.navbar.about, href: '#sobre-mi' },
+    { id: 2, text: t.navbar.projects, href: '#proyectos' },
+    { id: 3, text: t.navbar.contact, href: '#contacto' },
   ];
 
   return (
@@ -26,7 +28,7 @@ const Navbar = () => {
         {/* LOGO */}
         <div className="text-xl md:text-2xl font-bold font-mono text-white flex items-center gap-2 cursor-pointer">
           <FaCode className="text-neon-green" />
-          <span>Pabloski<span className="text-neon-green">Dev</span></span>
+          <span dangerouslySetInnerHTML={{ __html: t.navbar.logo.replace('Dev', '<span class="text-neon-green">Dev</span>') }} />
         </div>
 
         {/* LINKS DESKTOP - Se muestran solo en pantallas grandes (md y superiores) */}

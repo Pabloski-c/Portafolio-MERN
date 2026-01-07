@@ -6,6 +6,7 @@ import About from './components/About';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import SettingsMenu from './components/SettingsMenu';
 
 /**
  * Componente principal de la aplicación.
@@ -29,6 +30,8 @@ function App() {
         <Contact />
       </main>
 
+      <SettingsMenu />
+      
       {/* El pie de página al final de la página */}
       <Footer />
     </div>

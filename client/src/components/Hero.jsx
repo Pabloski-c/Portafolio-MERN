@@ -3,11 +3,13 @@ import { TypeAnimation } from 'react-type-animation';
 import { FaGithub, FaLinkedin, FaFileDownload } from 'react-icons/fa';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
+import { useSettings } from '../context/SettingsContext';
 
 // --- CONFIGURACIÓN ---
 // Estas variables facilitan la actualización de datos clave sin tener que buscarlos en el código.
 const GITHUB_USERNAME = "Pabloski-c"; // Tu nombre de usuario de GitHub para la foto de perfil.
-const CV_URL ="https://drive.google.com/file/d/1-8RXaBkZCyy5PAYSkNyELoqI5iLudvq_/view?usp=drive_link"; // Enlace directo a tu CV.
+const CV_URL_ES ="https://drive.google.com/file/d/1-8RXaBkZCyy5PAYSkNyELoqI5iLudvq_/view?usp=drive_link"; // Enlace directo a tu CV en español.
+const CV_URL_EN = "https://drive.google.com/file/d/189ZJUJTB2wDjiETTf2i-XXdHgEb3el6y/view?usp=drive_link"; // TODO: Reemplazar con el enlace directo a tu CV en inglés.
 
 /**
  * Componente Hero (sección principal).
@@ -17,8 +19,12 @@ const CV_URL ="https://drive.google.com/file/d/1-8RXaBkZCyy5PAYSkNyELoqI5iLudvq_
  * y `react-type-animation` para el efecto de escritura.
  */
 const Hero = () => {
+  const { t, language } = useSettings();
   // Construye la URL de la imagen de perfil dinámicamente usando el nombre de usuario de GitHub.
   const profileImage = `https://github.com/${GITHUB_USERNAME}.png`;
+
+  // Selecciona la URL del CV según el idioma actual.
+  const cvUrl = language === 'en' ? CV_URL_EN : CV_URL_ES;
 
   return (
     <section className="min-h-screen bg-dark-bg text-white flex items-center justify-center px-4 sm:px-6 relative overflow-hidden pt-24 md:pt-0"> {/* Padding lateral ajustado */}
@@ -37,27 +43,20 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="space-y-4 md:space-y-6 text-center md:text-left"
         >
-          <h2 className="text-lg sm:text-xl md:text-2xl font-mono text-neon-green font-bold tracking-wider">
-            &lt;Hola mundo /&gt;
-          </h2>
+          <h2 className="text-lg sm:text-xl md:text-2xl font-mono text-neon-green font-bold tracking-wider"
+            dangerouslySetInnerHTML={{ __html: t.hero.holaMundo }}
+          />
           
           {/* Título adaptable: Pequeño en móvil, Medio en Tablet, Grande en Desktop */}
           <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-7xl font-bold tracking-tight">
-            Soy <span className="text-gray-300">Pablo</span>
+            {t.hero.greeting} <span className="text-gray-300">{t.hero.name}</span>
           </h1>
 
           {/* Animación de texto que simula escritura */}
           <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-400 h-[40px] md:h-[50px]">
-            <span>I'm a </span>
+            <span>{t.hero.iAmA}</span>
             <TypeAnimation
-              sequence={[
-                'Full Stack Dev',
-                2000,
-                'Engineer Student',
-                2000,
-                'Software Enthusiast',
-                2000
-              ]}
+              sequence={t.hero.typeAnimation}
               wrapper="span"
               speed={50}
               className="text-neon-green border-b-4 border-neon-green"
@@ -66,7 +65,7 @@ const Hero = () => {
           </div>
 
           <p className="text-gray-400 max-w-lg mx-auto md:mx-0 text-base sm:text-lg leading-relaxed">
-             Transformando ideas en código...
+             {t.hero.shortDescription}
           </p>
 
           {/* --- SECCIÓN 1: ACCIONES PRINCIPALES (Botones) --- */}
@@ -76,24 +75,24 @@ const Hero = () => {
               href="#contacto"
               className="w-max px-6 py-3 border-2 border-neon-green text-neon-green font-mono hover:bg-neon-green hover:text-black transition-all duration-300 rounded shadow-neon font-bold text-sm sm:text-base flex items-center justify-center"
             >
-              Contáctame
+              {t.hero.btnContact}
             </a>
             
             {/* Botón para descargar/ver el CV */}
             <a 
-              href={CV_URL}
+              href={cvUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="w-max px-6 py-3 border-2 border-gray-600 text-gray-300 font-mono hover:border-white hover:text-white transition-all duration-300 rounded flex items-center gap-2 text-sm sm:text-base"
             >
-              <FaFileDownload /> CV
+              <FaFileDownload /> {t.hero.btnResume}
             </a>
           </div>
 
           {/* --- SECCIÓN 2: REDES SOCIALES --- */}
           <div className="mt-8">
             <p className="text-sm text-gray-500 font-mono mb-4 uppercase tracking-widest">
-              Redes Sociales
+              {t.hero.socials}
             </p>
 
             {/* Enlaces a perfiles sociales con iconos */}

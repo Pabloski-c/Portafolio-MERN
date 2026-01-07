@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaHeart, FaCode } from 'react-icons/fa';
+import { useSettings } from '../context/SettingsContext';
 
 /**
  * Componente del pie de página.
@@ -8,6 +9,7 @@ import { FaHeart, FaCode } from 'react-icons/fa';
  * El año se actualiza dinámicamente para reflejar el año actual.
  */
 const Footer = () => {
+  const { t } = useSettings();
   // Obtiene el año actual para mostrarlo en el pie de página.
   const year = new Date().getFullYear();
 
@@ -18,15 +20,15 @@ const Footer = () => {
         {/* Información del desarrollador */}
         <p className="flex items-center gap-2">
           <FaCode className="text-neon-green" />
-          Desarrollado por <span className="text-white font-bold">Pablo Torres Lell</span>
+          {t.footer.developedBy} <span className="text-white font-bold">{t.footer.name}</span>
         </p>
 
         {/* Copyright con año dinámico */}
-        <p>© {year} Todos los derechos reservados.</p>
+        <p>{t.footer.copyright.replace('{year}', year)}</p>
 
         {/* Tecnologías utilizadas */}
         <p className="flex items-center gap-2">
-          Hecho con <FaHeart className="text-red-500 animate-pulse" /> y MERN Stack
+          {t.footer.madeWith} <FaHeart className="text-red-500 animate-pulse" /> {t.footer.tool}
         </p>
       </div>
     </footer>

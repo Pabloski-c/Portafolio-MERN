@@ -8,6 +8,7 @@ import React, { useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { projectConfig } from '../constants/projectConfig';
+import { useSettings } from '../context/SettingsContext';
 
 /**
  * Muestra una tarjeta para un único proyecto.
@@ -23,6 +24,7 @@ import { projectConfig } from '../constants/projectConfig';
  * @returns {JSX.Element} El componente de tarjeta de proyecto renderizado.
  */
 const ProjectCard = ({ repo, setBgColor }) => {
+  const { t } = useSettings();
   const ref = useRef(null);
   
   // El hook useInView detecta si el componente está en el viewport.
@@ -61,14 +63,14 @@ const ProjectCard = ({ repo, setBgColor }) => {
             className="text-xl md:text-2xl text-neon-green font-mono uppercase tracking-widest mb-6"
             style={{ color: config.accent }}
           >
-            {config.subtitle}
+            {t.projectSubtitles[repo.name] || t.projectSubtitles.default}
           </p>
           
           <p 
             className="text-gray-200 font-medium max-w-3xl mx-auto text-base md:text-lg leading-relaxed drop-shadow-sm"
             style={{ color: config.color }}
           >
-            {repo.description || "Sin descripción disponible."}
+            {repo.description || t.projectCard.noDescription}
           </p>
         </div>
 
@@ -80,7 +82,7 @@ const ProjectCard = ({ repo, setBgColor }) => {
                 rel="noopener noreferrer"
                 className="px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-neon-green hover:scale-105 transition-all flex items-center gap-2"
               >
-                <FaGithub /> Código
+                <FaGithub /> {t.projectCard.codeButton}
               </a>
               {repo.homepage && (
                 <a 
@@ -89,7 +91,7 @@ const ProjectCard = ({ repo, setBgColor }) => {
                   rel="noopener noreferrer"
                   className="px-6 py-3 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-black hover:scale-105 transition-all flex items-center gap-2"
                 >
-                  <FaExternalLinkAlt /> Demo
+                  <FaExternalLinkAlt /> {t.projectCard.demoButton}
                 </a>
               )}
           </div>

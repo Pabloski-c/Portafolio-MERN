@@ -15,21 +15,18 @@
 export const projectConfig = {
     "HermanosJota": {
       theme: "#bc5b35c7",
-      subtitle: "Desarrollo Full Stack: e-commerce",
       image: "/projects/HermanosJota.jpg",
       accent: "#ffc464ff",
       color: "#f5f6ccff"
     },
     "Portafolio-MERN": {
       theme: "#0a192f",
-      subtitle: "Diseño UI/UX & Desarrollo Full Stack",
       image: "/projects/portafolio.jpg",
       accent: "#64ffda",
       color: "#ccd6f6"
     },
     "Proyecto-GesGym": {
       theme: "#1a1a1a",
-      subtitle: "Gestión Administrativa & C++",
       image: "https://placehold.co/600x400/transparent/0fff00/jpg?text=Sin-Imagen",
       accent: "#ff0055",
       color: "#e5e5e5"
@@ -37,7 +34,6 @@ export const projectConfig = {
     // Configuración por defecto
     "default": {
       theme: "#0a0a0a",
-      subtitle: "Desarrollo de Software",
       image: "/projects/default.jpg",
       accent: "#00ff41",
       color: "#e5e5e5"

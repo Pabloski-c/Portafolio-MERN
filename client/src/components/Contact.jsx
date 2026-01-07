@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
+import { useSettings } from '../context/SettingsContext';
 
 /**
  * Componente de Contacto.
@@ -10,6 +11,7 @@ import { motion } from 'framer-motion';
  * y muestra mensajes de feedback al usuario (enviando, éxito, error).
  */
 const Contact = () => {
+  const { t } = useSettings();
   // --- CONFIGURACIÓN ---
   const API_ENDPOINT = 'https://portafolio-mern-api.onrender.com/api/contact';
 
@@ -80,10 +82,10 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-mono font-bold text-neon-green inline-block border-b-4 border-neon-green pb-2">
-            &lt;Contacto /&gt;
-          </h2>
-          <p className="text-gray-400 mt-4">¿Tienes una idea o proyecto? Contáctame.</p>
+          <h2 className="text-3xl md:text-4xl font-mono font-bold text-neon-green inline-block border-b-4 border-neon-green pb-2"
+            dangerouslySetInnerHTML={{ __html: t.contact.title }}
+          />
+          <p className="text-gray-400 mt-4">{t.contact.subtitle}</p>
         </motion.div>
 
         {/* Contenedor del formulario */}
@@ -97,27 +99,27 @@ const Contact = () => {
             <div className="grid md:grid-cols-2 gap-6">
               {/* Campo Nombre */}
               <div className="space-y-2">
-                <label className="text-neon-green font-mono text-sm">Usuario (Nombre)</label>
+                <label className="text-neon-green font-mono text-sm">{t.contact.form.nameLabel}</label>
                 <input 
                   type="text"
                   name="nombre" 
                   value={formData.nombre}
                   onChange={handleChange}
                   required
-                  placeholder="John Doe" 
+                  placeholder={t.contact.form.namePlaceholder}
                   className="w-full bg-dark-bg border border-gray-700 rounded p-3 text-white focus:border-neon-green focus:outline-none focus:shadow-[0_0_10px_rgba(0,255,65,0.3)] transition-all"
                 />
               </div>
               {/* Campo Email */}
               <div className="space-y-2">
-                <label className="text-neon-green font-mono text-sm">Email de destino</label>
+                <label className="text-neon-green font-mono text-sm">{t.contact.form.emailLabel}</label>
                 <input 
                   type="email" 
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  placeholder="john@example.com" 
+                  placeholder={t.contact.form.emailPlaceholder}
                   className="w-full bg-dark-bg border border-gray-700 rounded p-3 text-white focus:border-neon-green focus:outline-none focus-shadow-[0_0_10px_rgba(0,255,65,0.3)] transition-all"
                 />
               </div>
@@ -125,14 +127,14 @@ const Contact = () => {
 
             {/* Campo Mensaje */}
             <div className="space-y-2">
-              <label className="text-neon-green font-mono text-sm">Mensaje encriptado</label>
+              <label className="text-neon-green font-mono text-sm">{t.contact.form.messageLabel}</label>
               <textarea 
                 rows="5"
                 name="mensaje"
                 value={formData.mensaje}
                 onChange={handleChange}
                 required
-                placeholder="Escribe tu mensaje aquí..." 
+                placeholder={t.contact.form.messagePlaceholder}
                 className="w-full bg-dark-bg border border-gray-700 rounded p-3 text-white focus:border-neon-green focus:outline-none focus:shadow-[0_0_10px_rgba(0,255,65,0.3)] transition-all resize-none"
               ></textarea>
             </div>
@@ -147,18 +149,18 @@ const Contact = () => {
                 ${status === 'sending' ? 'bg-gray-700 border-gray-700 cursor-wait text-gray-400' : 'bg-transparent border-neon-green text-neon-green hover:bg-neon-green hover:text-black'}
               `}
             >
-              {status === 'sending' ? 'ENVIANDO DATOS...' : 'ENVIAR MENSAJE'}
+              {status === 'sending' ? t.contact.form.btnSending : t.contact.form.btnSend}
             </button>
 
             {/* Mensajes de feedback para el usuario */}
             {status === 'success' && (
               <p className="text-neon-green text-center font-mono animate-pulse">
-                ¡Mensaje recibido en el servidor central!
+                {t.contact.form.success}
               </p>
             )}
             {status === 'error' && (
               <p className="text-red-500 text-center font-mono">
-                ❌ Error de conexión. El servidor no responde.
+                {t.contact.form.error}
               </p>
             )}
 

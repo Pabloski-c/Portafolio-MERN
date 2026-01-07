@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ProjectCard from './ProjectCard';
 import SideTechStack from './SideTechStack';
+import { useSettings } from '../context/SettingsContext';
 
 // --- CONFIGURACIÓN ---
 const GITHUB_USERNAME = "Pabloski-c";
@@ -29,6 +30,7 @@ const SHOW_FORKS = ["HermanosJota"];
  * - La sección principal (`motion.section`) anima su color de fondo (`backgroundColor`) según el `ProjectCard` visible.
  */
 const Projects = () => {
+  const { t } = useSettings();
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [bgColor, setBgColor] = useState("#0a0a0a");
@@ -78,14 +80,14 @@ const Projects = () => {
         <div className="flex-1 container mx-auto px-4 md:px-10 py-10">
           
           <div className="text-center pt-12 pb-4">
-            <h2 className="text-3xl md:text-4xl font-mono font-bold text-white inline-block border-b-4 border-neon-green pb-2">
-              &lt;Proyectos /&gt;
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-mono font-bold text-white inline-block border-b-4 border-neon-green pb-2"
+              dangerouslySetInnerHTML={{ __html: t.projects.title }}
+            />
           </div>
 
           {loading ? (
             <div className="h-screen flex items-center justify-center text-neon-green font-mono animate-pulse">
-              Inicializando galería de proyectos...
+              {t.projects.loading}
             </div>
           ) : (
             <div className="flex flex-col relative z-10">

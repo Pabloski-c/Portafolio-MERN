@@ -9,3 +9,20 @@ img {
   width: 100%;
   display: block;
 }
+
+/* Accesibilidad: Alto Contraste */
+body.high-contrast * {
+  background-color: black !important;
+  color: yellow !important;
+  border-color: white !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+body.high-contrast .text-neon-green {
+  color: #00ff00 !important; /* Verde puro para máximo contraste */
+}
+
+body.high-contrast img {
+  filter: grayscale(100%) contrast(120%);
+}
