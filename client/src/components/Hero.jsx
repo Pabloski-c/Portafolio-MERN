@@ -8,8 +8,8 @@ import { useSettings } from '../context/SettingsContext';
 // --- CONFIGURACIÓN ---
 // Estas variables facilitan la actualización de datos clave sin tener que buscarlos en el código.
 const GITHUB_USERNAME = "Pabloski-c"; // Tu nombre de usuario de GitHub para la foto de perfil.
-const CV_URL_ES ="https://drive.google.com/file/d/1-8RXaBkZCyy5PAYSkNyELoqI5iLudvq_/view?usp=drive_link"; // Enlace directo a tu CV en español.
-const CV_URL_EN = "https://drive.google.com/file/d/189ZJUJTB2wDjiETTf2i-XXdHgEb3el6y/view?usp=drive_link"; // Enlace directo a tu CV en inglés.
+const CV_URL_ES ="https://drive.google.com/file/d/1NVMiDpRfsfXkp0gpKMjTsymaWgT0Rb3o/view?usp=drive_link"; // Enlace directo a tu CV en español.
+const CV_URL_EN = "https://drive.google.com/file/d/1o8q3cmGdSYNXmn6CxFO4K7jYgY1-GUNc/view?usp=drive_link"; // Enlace directo a tu CV en inglés.
 
 /**
  * Componente Hero (sección principal).
