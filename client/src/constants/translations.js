@@ -31,7 +31,7 @@ export const translations = {
     about: {
       title: "<Sobre Mí />",
       loading: "Decodificando datos del usuario...",
-      error: "⚠️ No se pudo cargar la información de GitHub en este momento. (Posible límite de tasa excedido, intenta más tarde)."
+      error: "No se pudo cargar la información de GitHub en este momento. (Posible límite de tasa excedido, intenta más tarde)."
     },
     projects: {
       title: "<Proyectos />",
@@ -62,7 +62,7 @@ export const translations = {
         btnSend: "Enviar Mensaje",
         btnSending: "Enviando datos...",
         success: "¡Mensaje recibido en el servidor central!",
-        error: "❌ Error de conexión. El servidor no responde."
+        error: "Error de conexión. El servidor no responde."
       }
     },
     settingsMenu: {
@@ -113,7 +113,7 @@ export const translations = {
     about: {
       title: "<About Me />",
       loading: "Decoding user data...",
-      error: "⚠️ Could not load GitHub information at this time. (Possible rate limit exceeded, try again later)."
+      error: "Could not load GitHub information at this time. (Possible rate limit exceeded, try again later)."
     },
     projects: {
       title: "<Projects />",
@@ -144,7 +144,7 @@ export const translations = {
         btnSend: "Send Message",
         btnSending: "Sending data...",
         success: "Message received at central server!",
-        error: "❌ Connection error. The server is not responding."
+        error: "Connection error. The server is not responding."
       }
     },
     settingsMenu: {

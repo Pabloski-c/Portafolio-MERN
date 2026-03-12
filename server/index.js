@@ -21,8 +21,8 @@ const MONGO_URI = process.env.MONGO_URI;
 
 // Conecta a la base de datos de MongoDB usando la URI del archivo .env.
 mongoose.connect(MONGO_URI)
-  .then(() => console.log('✅ Conectado a la Base de Datos MongoDB'))
-  .catch((err) => console.error('❌ Error de conexión a MongoDB:', err));
+  .then(() => console.log('Conectado a la Base de Datos MongoDB'))
+  .catch((err) => console.error('Error de conexión a MongoDB:', err));
 
 // --- RUTAS ---
 
@@ -32,7 +32,7 @@ mongoose.connect(MONGO_URI)
  * @access  Public
  */
 app.get('/', (req, res) => {
-  res.send('Servidor MERN activo 🚀');
+  res.send('Servidor MERN activo');
 });
 
 /**
