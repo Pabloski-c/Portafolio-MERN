@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaBars, FaTimes, FaCode } from 'react-icons/fa';
+import { FaBars, FaTimes, FaCode, FaGlobe } from 'react-icons/fa';
 import { useSettings } from '../context/SettingsContext';
 
 /**
@@ -9,7 +9,7 @@ import { useSettings } from '../context/SettingsContext';
  * Utiliza `react-icons` para los iconos y `useState` para gestionar el estado del menú móvil.
  */
 const Navbar = () => {
-  const { t } = useSettings();
+  const { t, language, toggleLanguage } = useSettings();
   // Estado para controlar la visibilidad del menú móvil. `true` si está abierto, `false` si está cerrado.
   const [isOpen, setIsOpen] = useState(false);
 
@@ -23,21 +23,23 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-dark-bg/80 backdrop-blur-md border-b border-gray-800 transition-all duration-300">
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="container mx-auto px-6 py-4 flex justify-between items-center relative">
         
         {/* LOGO */}
-        <div className="text-xl md:text-2xl font-bold font-mono text-white flex items-center gap-2 cursor-pointer">
-          <FaCode className="text-neon-green" />
-          <span dangerouslySetInnerHTML={{ __html: t.navbar.logo.replace('Dev', '<span class="text-neon-green">Dev</span>') }} />
+        <div className="flex-1 flex justify-start">
+          <div className="text-xl md:text-2xl font-bold font-mono text-white flex items-center gap-2 cursor-pointer">
+            <FaCode className="text-neon-green" />
+            <span dangerouslySetInnerHTML={{ __html: t.navbar.logo.replace('Dev', '<span class="text-neon-green">Dev</span>') }} />
+          </div>
         </div>
 
         {/* LINKS DESKTOP - Se muestran solo en pantallas grandes (md y superiores) */}
-        <ul className="hidden md:flex gap-8 text-sm font-mono tracking-wide">
+        <ul className="hidden md:flex flex-1 justify-center gap-8 text-sm font-mono tracking-wide">
           {links.map((link) => (
             <li key={link.id}>
               <a 
                 href={link.href} 
-                className="text-gray-300 hover:text-neon-green transition-colors duration-300 uppercase font-semibold"
+                className="text-gray-300 hover:text-neon-green transition-colors duration-300 uppercase font-semibold whitespace-nowrap"
               >
                 {link.text}
               </a>
@@ -45,10 +47,25 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* BOTÓN MENÚ MOVIL - Se muestra solo en pantallas pequeñas (inferiores a md) */}
-        <div className="md:hidden text-2xl text-white cursor-pointer hover:text-neon-green" onClick={() => setIsOpen(!isOpen)}>
-          {/* Cambia el icono dependiendo de si el menú está abierto o cerrado */}
-          {isOpen ? <FaTimes /> : <FaBars />}
+        {/* CONTROLES DERECHA */}
+        <div className="flex-1 flex justify-end items-center gap-4">
+          {/* Botón de Idioma */}
+          <button 
+            onClick={toggleLanguage}
+            className="flex items-center gap-2 text-gray-300 hover:text-neon-green transition-colors p-2"
+            title={language === 'es' ? "Switch to English" : "Cambiar a Español"}
+          >
+            <FaGlobe className="text-lg" />
+            <span className="font-mono text-sm uppercase font-semibold hidden sm:inline">
+              {language === 'es' ? 'ES' : 'EN'}
+            </span>
+          </button>
+
+          {/* BOTÓN MENÚ MOVIL - Se muestra solo en pantallas pequeñas (inferiores a md) */}
+          <div className="md:hidden text-2xl text-white cursor-pointer hover:text-neon-green" onClick={() => setIsOpen(!isOpen)}>
+            {/* Cambia el icono dependiendo de si el menú está abierto o cerrado */}
+            {isOpen ? <FaTimes /> : <FaBars />}
+          </div>
         </div>
 
         {/* MENÚ DESPLEGABLE MOVIL - Se muestra solo si `isOpen` es true */}

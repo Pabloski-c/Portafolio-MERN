@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaCog, FaGlobe, FaFont, FaAdjust } from 'react-icons/fa';
+import { FaCog, FaFont, FaAdjust } from 'react-icons/fa';
 import { useSettings } from '../context/SettingsContext';
 
 /**
  * Componente del menú de configuración.
  * 
  * Este componente proporciona una interfaz de usuario flotante para ajustar las configuraciones de accesibilidad y preferencia.
- * Permite cambiar el idioma, aumentar el tamaño de la fuente y activar el modo de alto contraste.
+ * Permite cambiar el tamaño de la fuente y activar el modo de alto contraste.
  * Utiliza el `useSettings` hook para interactuar con el `SettingsContext`.
  */
 const SettingsMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { language, toggleLanguage, increaseFont, toggleContrast, highContrast, t } = useSettings();
+  const { increaseFont, toggleContrast, highContrast, t } = useSettings();
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
@@ -26,17 +26,6 @@ const SettingsMenu = () => {
             exit={{ opacity: 0, y: 20, scale: 0.8 }}
             className="bg-[#111] border border-gray-800 p-4 rounded-xl shadow-2xl flex flex-col gap-3 mb-2 min-w-[160px]"
           >
-            {/* Toggle Idioma */}
-            <button 
-              onClick={toggleLanguage}
-              className="flex items-center gap-3 text-gray-300 hover:text-neon-green transition-colors w-full p-2 rounded-lg hover:bg-white/5"
-            >
-              <FaGlobe />
-              <span className="font-mono text-sm">
-                {language === 'es' ? t.settingsMenu.spanish : t.settingsMenu.english}
-              </span>
-            </button>
-
             {/* Tamaño Fuente */}
             <button 
               onClick={increaseFont}
