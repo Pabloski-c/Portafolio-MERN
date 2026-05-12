@@ -30,7 +30,7 @@
 *   **Dynamic Integration with GitHub API:** The projects section is fed in real-time from the GitHub API, showing my most recent repositories. They are automatically filtered to exclude forks and show only projects with descriptions, ensuring the content is always relevant.
 *   **Animated Technology Carousel:** An icon bar with infinite scrolling (ping-pong effect) that displays my tech stack in a visually appealing way, built with `framer-motion`.
 *   **Enhanced Hero Section:** High-impact design with carefully adjusted typography and spacing for perfect viewing on any device, from mobile to large screens.
-*   **Optimized Navigation:** Navigation bar with a "glassmorphism" effect and a redesigned mobile menu for a better user experience on touch screens.
+*   **Optimized Navigation:** Navigation bar with a "glassmorphism" effect, redesigned mobile menu, and an interactive scroll-spy indicator featuring a sliding underline animation built with `framer-motion` for a premium desktop experience.
 *   **Full Stack Contact System:** Functional form connected to a custom backend (Node/Express) that stores messages in a cloud-based MongoDB database.
 
 ---
