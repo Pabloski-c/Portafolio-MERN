@@ -131,11 +131,11 @@ const Hero = () => {
           <div className="absolute w-64 h-64 sm:w-80 sm:h-80 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-neon-green rounded-full blur-[80px] opacity-20 animate-pulse"></div>
           
           {/* Contenedor de la imagen de perfil con borde y sombra */}
-          <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[450px] lg:h-[450px] rounded-full p-2 bg-gradient-to-br from-gray-800 to-black border-2 border-neon-green shadow-neon overflow-hidden">
+          <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[450px] lg:h-[450px] rounded-full border-2 border-neon-green shadow-neon overflow-hidden group cursor-pointer">
              <img 
                src={profileImage} 
                alt="Profile" 
-               className="w-full h-full object-cover rounded-full hover:scale-105 transition-transform duration-500 grayscale hover:grayscale-0"
+               className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
              />
           </div>
         </motion.div>
