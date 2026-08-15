@@ -27,11 +27,14 @@
 ## Main Features
 
 *   **Modern UI/UX Design:** Dark aesthetic with neon green accents, inspired by code terminals. Use of `framer-motion` for smooth animations and a fluid user experience.
-*   **Dynamic Integration with GitHub API:** The projects section is fed in real-time from the GitHub API, showing my most recent repositories. They are automatically filtered to exclude forks and show only projects with descriptions, ensuring the content is always relevant.
-*   **Animated Technology Carousel:** An icon bar with infinite scrolling (ping-pong effect) that displays my tech stack in a visually appealing way, built with `framer-motion`.
-*   **Enhanced Hero Section:** High-impact design with carefully adjusted typography and spacing for perfect viewing on any device, from mobile to large screens.
-*   **Optimized Navigation:** Navigation bar with a "glassmorphism" effect, redesigned mobile menu, and an interactive scroll-spy indicator featuring a sliding underline animation built with `framer-motion` for a premium desktop experience.
-*   **Full Stack Contact System:** Functional form connected to a custom backend (Node/Express) that stores messages in a cloud-based MongoDB database.
+*   **Bilingual Support (i18n):** Instant switching between Spanish and English across the entire interface and CV links via global context.
+*   **Accessibility Panel (A11y):** Floating menu for real-time font size scaling and High Contrast mode toggle.
+*   **Dynamic «About Me» Section:** Real-time fetching of GitHub profile Markdown content with rich formatting and **`localStorage` caching (1 hour)** to prevent rate limits and ensure maximum speed.
+*   **Dynamic Integration with GitHub API:** Real-time repository showcase filtered automatically to feature the most relevant, non-fork projects.
+*   **Animated Tech Stack Carousel:** Sticky sidebar icon tracks with continuous scrolling for a visually rich stack presentation.
+*   **Interactive Hero Section:** High-impact hero with animated typewriter typography (`react-type-animation`), localized resume downloads, and interactive avatar.
+*   **Optimized Navigation:** Glassmorphism navbar, responsive mobile menu, and an interactive scroll-spy indicator with sliding underline animations.
+*   **Full Stack Contact System:** Functional form connected to a custom Node/Express backend persisting messages to MongoDB Atlas.
 
 ---
 
@@ -40,7 +43,9 @@
 ### Frontend (Client)
 *   **React + Vite:** For a fast and modular build.
 *   **Tailwind CSS:** For advanced styling and responsive design.
-*   **Framer Motion:** For transitions and entry effects.
+*   **Framer Motion:** For transitions, scroll-spy, and motion graphics.
+*   **React Markdown & Rehype Raw:** For processing and styling Markdown from GitHub.
+*   **React Type Animation:** For the typewriter effect in the hero header.
 *   **React Icons:** Vector iconography.
 
 ### Backend (Server)

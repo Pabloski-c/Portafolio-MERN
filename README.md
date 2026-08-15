@@ -27,11 +27,14 @@
 ## Características Principales
 
 * **Diseño UI/UX Moderno:** Estética oscura con acentos verde neón, inspirada en terminales de código. Uso de `framer-motion` para animaciones suaves y una experiencia de usuario fluida.
-* **Integración Dinámica con GitHub API:** La sección de proyectos se alimenta en tiempo real desde la API de GitHub, mostrando mis repositorios más recientes. Se filtran automáticamente para excluir forks y mostrar solo proyectos con descripción, asegurando que el contenido sea siempre relevante.
-* **Carrusel de Tecnologías Animado:** Una barra de iconos con desplazamiento infinito (efecto "ping-pong") que muestra mi stack tecnológico de una manera visualmente atractiva, construida con `framer-motion`.
-* **Hero Section Mejorado:** Diseño de alto impacto con tipografía y espaciado cuidadosamente ajustados para una perfecta visualización en cualquier dispositivo, desde móviles hasta pantallas grandes.
-* **Navegación Optimizada:** Barra de navegación con efecto "glassmorphism", menú móvil rediseñado y un indicador interactivo de sección activa con animación de subrayado fluido utilizando `framer-motion` para una experiencia premium en escritorio.
-* **Sistema de Contacto Full Stack:** Formulario funcional conectado a un Backend propio (Node/Express) que almacena los mensajes en una base de datos MongoDB en la nube.
+* **Soporte Bilingüe (i18n):** Cambio instantáneo entre Español e Inglés en toda la interfaz y enlaces mediante un sistema de contexto global.
+* **Panel de Accesibilidad (A11y):** Menú flotante para ajuste del tamaño de fuente en tiempo real y activación de modo de Alto Contraste.
+* **Sección «Sobre Mí» Dinámica:** Carga en tiempo real el contenido Markdown directamente del perfil de GitHub con renderizado enriquecido y almacenamiento en **caché local (`localStorage`)** para optimizar el rendimiento y evitar bloqueos por límites de peticiones.
+* **Integración Dinámica con GitHub API:** La sección de proyectos se alimenta en tiempo real desde la API de GitHub, mostrando mis repositorios más recientes filtrados automáticamente.
+* **Carrusel de Tecnologías Animado:** Barras laterales con desplazamiento continuo que muestran el stack tecnológico de forma visual e interactiva.
+* **Hero Section Interactivo:** Diseño de alto impacto con tipografía animada (`react-type-animation`), enlaces a CVs localizados y avatar con micro-interacciones.
+* **Navegación Optimizada:** Barra de navegación con efecto *glassmorphism*, menú móvil adaptativo e indicador de sección activa con animación fluida de subrayado (*scroll-spy*).
+* **Sistema de Contacto Full Stack:** Formulario funcional conectado a un Backend propio (Node/Express) que almacena los mensajes en MongoDB Atlas.
 
 ---
 
@@ -40,7 +43,9 @@
 ### Frontend (Cliente)
 * **React + Vite:** Para una construcción rápida y modular.
 * **Tailwind CSS:** Para el estilizado avanzado y diseño responsivo.
-* **Framer Motion:** Para las transiciones y efectos de entrada.
+* **Framer Motion:** Para las transiciones, scroll-spy y efectos visuales.
+* **React Markdown & Rehype Raw:** Para procesar y estilizar el perfil traído desde GitHub.
+* **React Type Animation:** Para el efecto máquina de escribir en el Hero.
 * **React Icons:** Iconografía vectorial.
 
 ### Backend (Servidor)
