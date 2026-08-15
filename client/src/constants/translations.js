@@ -5,7 +5,7 @@ export const translations = {
       about: "Sobre Mí",
       projects: "Proyectos",
       contact: "Contacto",
-      logo: "PabloskiDev"
+      logo: "PabloDev"
     },
     hero: {
       greeting: "Hola, soy",
@@ -87,7 +87,7 @@ export const translations = {
       about: "About Me",
       projects: "Projects",
       contact: "Contact",
-      logo: "PabloskiDev"
+      logo: "PabloDev"
     },
     hero: {
       greeting: "Hi, I'm",
