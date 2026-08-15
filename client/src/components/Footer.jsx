@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaHeart, FaCode } from 'react-icons/fa';
 import { useSettings } from '../context/SettingsContext';
+import styles from './Footer.module.css';
 
 /**
  * Componente del pie de página.
@@ -14,21 +15,21 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-black text-gray-500 py-8 border-t border-gray-900 text-center font-mono text-sm">
-      <div className="container mx-auto px-5 flex flex-col md:flex-row justify-between items-center gap-4">
+    <footer className={styles.footer}>
+      <div className={`container ${styles.footerContainer}`}>
         
         {/* Información del desarrollador */}
-        <p className="flex items-center gap-2">
-          <FaCode className="text-neon-green" />
-          {t.footer.developedBy} <span className="text-white font-bold">{t.footer.name}</span>
+        <p className={styles.footerItem}>
+          <FaCode className={styles.codeIcon} />
+          {t.footer.developedBy} <span className={styles.authorName}>{t.footer.name}</span>
         </p>
 
         {/* Copyright con año dinámico */}
         <p>{t.footer.copyright.replace('{year}', year)}</p>
 
         {/* Tecnologías utilizadas */}
-        <p className="flex items-center gap-2">
-          {t.footer.madeWith} <FaHeart className="text-red-500 animate-pulse" /> {t.footer.tool}
+        <p className={styles.footerItem}>
+          {t.footer.madeWith} <FaHeart className={styles.heartIcon} /> {t.footer.tool}
         </p>
       </div>
     </footer>

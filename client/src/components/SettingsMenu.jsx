@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaCog, FaFont, FaAdjust } from 'react-icons/fa';
 import { useSettings } from '../context/SettingsContext';
+import styles from './SettingsMenu.module.css';
 
 /**
  * Componente del menú de configuración.
@@ -16,7 +17,7 @@ const SettingsMenu = () => {
   const { increaseFont, toggleContrast, highContrast, t } = useSettings();
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+    <div className={styles.settingsContainer}>
       
       <AnimatePresence>
         {isOpen && (
@@ -24,15 +25,15 @@ const SettingsMenu = () => {
             initial={{ opacity: 0, y: 20, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.8 }}
-            className="bg-[#111] border border-gray-800 p-4 rounded-xl shadow-2xl flex flex-col gap-3 mb-2 min-w-[160px]"
+            className={styles.popupMenu}
           >
             {/* Tamaño Fuente */}
             <button 
               onClick={increaseFont}
-              className="flex items-center gap-3 text-gray-300 hover:text-neon-green transition-colors w-full p-2 rounded-lg hover:bg-white/5"
+              className={styles.menuItem}
             >
               <FaFont />
-              <span className="font-mono text-sm">
+              <span className={styles.menuText}>
                 {t.settingsMenu.fontSize}
               </span>
             </button>
@@ -40,10 +41,10 @@ const SettingsMenu = () => {
             {/* Alto Contraste */}
             <button 
               onClick={toggleContrast}
-              className={`flex items-center gap-3 transition-colors w-full p-2 rounded-lg hover:bg-white/5 ${highContrast ? 'text-neon-green' : 'text-gray-300'}`}
+              className={`${styles.menuItem} ${highContrast ? styles.menuItemActive : ''}`}
             >
               <FaAdjust />
-              <span className="font-mono text-sm">
+              <span className={styles.menuText}>
                 {t.settingsMenu.contrast}
               </span>
             </button>
@@ -55,10 +56,10 @@ const SettingsMenu = () => {
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ rotate: 90 }}
-        className="bg-neon-green text-black p-4 rounded-full shadow-[0_0_15px_rgba(0,255,65,0.4)] hover:shadow-[0_0_25px_rgba(0,255,65,0.6)] transition-all"
+        className={styles.triggerBtn}
         aria-label={t.settingsMenu.ariaLabel}
       >
-        <FaCog className="text-xl" />
+        <FaCog className={styles.triggerIcon} />
       </motion.button>
     </div>
   );

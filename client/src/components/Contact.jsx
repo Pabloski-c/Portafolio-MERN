@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { useSettings } from '../context/SettingsContext';
+import styles from './Contact.module.css';
 
 /**
  * Componente de Contacto.
@@ -70,22 +71,23 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-20 px-5 bg-dark-bg text-white relative overflow-hidden" id="contacto">
+    <section className={styles.contactSection} id="contacto">
       {/* Línea decorativa superior */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-neon-green to-transparent opacity-50"></div>
+      <div className={styles.topAccentLine}></div>
 
-      <div className="container mx-auto max-w-4xl">
+      <div className={`container ${styles.contactContainer}`}>
         {/* Título de la sección */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          className={styles.header}
         >
-          <h2 className="text-3xl md:text-4xl font-mono font-bold text-neon-green inline-block border-b-4 border-neon-green pb-2"
+          <h2 
+            className={styles.title}
             dangerouslySetInnerHTML={{ __html: t.contact.title }}
           />
-          <p className="text-gray-400 mt-4">{t.contact.subtitle}</p>
+          <p className={styles.subtitle}>{t.contact.subtitle}</p>
         </motion.div>
 
         {/* Contenedor del formulario */}
@@ -93,13 +95,13 @@ const Contact = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="bg-[#111] p-8 rounded-lg border border-gray-800 shadow-[0_0_15px_rgba(0,255,65,0.05)]"
+          className={styles.formCard}
         >
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.inputGrid}>
               {/* Campo Nombre */}
-              <div className="space-y-2">
-                <label className="text-neon-green font-mono text-sm">{t.contact.form.nameLabel}</label>
+              <div className={styles.fieldGroup}>
+                <label className={styles.label}>{t.contact.form.nameLabel}</label>
                 <input 
                   type="text"
                   name="nombre" 
@@ -107,27 +109,27 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   placeholder={t.contact.form.namePlaceholder}
-                  className="w-full bg-dark-bg border border-gray-700 rounded p-3 text-white focus:border-neon-green focus:outline-none focus:shadow-[0_0_10px_rgba(0,255,65,0.3)] transition-all"
+                  className={styles.input}
                 />
               </div>
               {/* Campo Email */}
-              <div className="space-y-2">
-                <label className="text-neon-green font-mono text-sm">{t.contact.form.emailLabel}</label>
+              <div className={styles.fieldGroup}>
+                <label className={styles.label}>{t.contact.form.emailLabel}</label>
                 <input 
                   type="email" 
-                  name="email"
+                  name="email" 
                   value={formData.email}
                   onChange={handleChange}
                   required
                   placeholder={t.contact.form.emailPlaceholder}
-                  className="w-full bg-dark-bg border border-gray-700 rounded p-3 text-white focus:border-neon-green focus:outline-none focus-shadow-[0_0_10px_rgba(0,255,65,0.3)] transition-all"
+                  className={styles.input}
                 />
               </div>
             </div>
 
             {/* Campo Mensaje */}
-            <div className="space-y-2">
-              <label className="text-neon-green font-mono text-sm">{t.contact.form.messageLabel}</label>
+            <div className={styles.fieldGroup}>
+              <label className={styles.label}>{t.contact.form.messageLabel}</label>
               <textarea 
                 rows="5"
                 name="mensaje"
@@ -135,31 +137,27 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 placeholder={t.contact.form.messagePlaceholder}
-                className="w-full bg-dark-bg border border-gray-700 rounded p-3 text-white focus:border-neon-green focus:outline-none focus:shadow-[0_0_10px_rgba(0,255,65,0.3)] transition-all resize-none"
+                className={styles.textarea}
               ></textarea>
             </div>
 
             {/* Botón de envío */}
             <button 
               type="submit"
-              // Deshabilita el botón mientras se está enviando el formulario.
               disabled={status === 'sending'}
-              // Clases condicionales para estilizar el botón según el estado.
-              className={`w-full py-4 border font-bold font-mono transition-all duration-300 rounded uppercase tracking-widest shadow-neon
-                ${status === 'sending' ? 'bg-gray-700 border-gray-700 cursor-wait text-gray-400' : 'bg-transparent border-neon-green text-neon-green hover:bg-neon-green hover:text-black'}
-              `}
+              className={`${styles.submitBtn} ${status === 'sending' ? styles.submitBtnSending : ''}`}
             >
               {status === 'sending' ? t.contact.form.btnSending : t.contact.form.btnSend}
             </button>
 
             {/* Mensajes de feedback para el usuario */}
             {status === 'success' && (
-              <p className="text-neon-green text-center font-mono animate-pulse">
+              <p className={styles.feedbackSuccess}>
                 {t.contact.form.success}
               </p>
             )}
             {status === 'error' && (
-              <p className="text-red-500 text-center font-mono">
+              <p className={styles.feedbackError}>
                 {t.contact.form.error}
               </p>
             )}

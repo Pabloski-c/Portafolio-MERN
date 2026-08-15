@@ -1,5 +1,3 @@
-import './App.css';
-// Componentes
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -7,6 +5,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import SettingsMenu from './components/SettingsMenu';
+import styles from './App.module.css';
 
 /**
  * Componente principal de la aplicación.
@@ -16,9 +15,8 @@ import SettingsMenu from './components/SettingsMenu';
  * la barra de navegación, el contenido principal (hero, sobre mí, proyectos, contacto) y el pie de página.
  */
 function App() {
-
   return (
-    <div className="bg-dark-bg min-h-screen font-sans selection:bg-neon-green selection:text-black">
+    <div className={styles.appWrapper}>
       {/* La barra de navegación es fija en la parte superior */}
       <Navbar />
       
@@ -35,7 +33,7 @@ function App() {
       {/* El pie de página al final de la página */}
       <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

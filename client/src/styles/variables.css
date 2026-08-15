@@ -1,0 +1,45 @@
+:root {
+  /* --- Colores Principales --- */
+  --color-neon-green: #00ff41;
+  --color-neon-green-glow: rgba(0, 255, 65, 0.5);
+  --color-neon-green-subtle: rgba(0, 255, 65, 0.05);
+  --color-neon-green-shadow: rgba(0, 255, 65, 0.3);
+  --color-neon-green-btn-shadow: rgba(0, 255, 65, 0.4);
+  --color-neon-green-btn-hover-shadow: rgba(0, 255, 65, 0.6);
+  --color-neon-green-pulse: rgba(0, 255, 65, 0.2);
+
+  --color-dark-bg: #0a0a0a;
+  --color-card-bg: #111111;
+  --color-card-bg-elevated: #161616;
+  
+  --color-border: #1f2937;
+  --color-border-dark: #374151;
+  --color-border-light: rgba(255, 255, 255, 0.2);
+
+  --color-text-white: #ffffff;
+  --color-text-gray-100: #f3f4f6;
+  --color-text-gray-200: #e5e7eb;
+  --color-text-gray-300: #d1d5db;
+  --color-text-gray-400: #9ca3af;
+  --color-text-gray-500: #6b7280;
+  --color-text-gray-600: #4b5563;
+  --color-text-gray-700: #374151;
+
+  --color-error: #ef4444;
+  --color-error-bg: rgba(239, 68, 68, 0.1);
+
+  /* --- Sombras --- */
+  --shadow-neon: 0 0 20px var(--color-neon-green-glow);
+  --shadow-neon-subtle: 0 0 15px var(--color-neon-green-subtle);
+  --shadow-neon-glow: 0 0 10px var(--color-neon-green-shadow);
+
+  /* --- Tipografías --- */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* --- Transiciones --- */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --transition-long: 0.7s ease-in-out;
+}

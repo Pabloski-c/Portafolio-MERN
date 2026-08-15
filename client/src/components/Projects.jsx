@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import ProjectCard from './ProjectCard';
 import SideTechStack from './SideTechStack';
 import { useSettings } from '../context/SettingsContext';
+import styles from './Projects.module.css';
 
 // --- CONFIGURACIÓN ---
 const GITHUB_USERNAME = "Pabloski-c";
@@ -18,16 +19,6 @@ const SHOW_FORKS = ["HermanosJota"];
 /**
  * Componente principal de la sección de Proyectos.
  * Orquesta la obtención de datos y el renderizado de la lista de proyectos.
- *
- * Características:
- * - Gestiona el estado de los repositorios (`repos`), el estado de carga (`loading`) y el color de fondo dinámico (`bgColor`).
- * - Realiza una llamada a la API de GitHub para obtener los repositorios del usuario.
- * - Filtra los repositorios para mostrar solo los más relevantes:
- *   - Excluye repositorios en la lista negra `IGNORED_REPOS`.
- *   - Excluye repositorios sin descripción.
- *   - Por defecto, excluye forks, pero permite forks específicos listados en `SHOW_FORKS`.
- * - Renderiza una lista vertical de componentes `ProjectCard`.
- * - La sección principal (`motion.section`) anima su color de fondo (`backgroundColor`) según el `ProjectCard` visible.
  */
 const Projects = () => {
   const { t } = useSettings();
@@ -65,32 +56,33 @@ const Projects = () => {
   return (
     <motion.section 
       id="proyectos"
-      className="transition-colors duration-700 ease-in-out relative min-h-screen"
+      className={styles.projectsSection}
       animate={{ backgroundColor: bgColor }}
     >
       {/* Contenedor Flex para: BarraIzq - Contenido - BarraDer */}
-      <div className="flex justify-between">
+      <div className={styles.layoutWrapper}>
         
         {/* --- BARRA IZQUIERDA (Sticky) --- */}
-        <div className="hidden lg:block sticky top-0 h-screen z-20">
+        <div className={styles.stickySidebar}>
           <SideTechStack direction="normal" />
         </div>
 
         {/* --- CONTENIDO CENTRAL (Proyectos) --- */}
-        <div className="flex-1 container mx-auto px-4 md:px-10 py-10">
+        <div className={`container ${styles.mainContent}`}>
           
-          <div className="text-center pt-12 pb-4">
-            <h2 className="text-3xl md:text-4xl font-mono font-bold text-white inline-block border-b-4 border-neon-green pb-2"
+          <div className={styles.header}>
+            <h2 
+              className={styles.title}
               dangerouslySetInnerHTML={{ __html: t.projects.title }}
             />
           </div>
 
           {loading ? (
-            <div className="h-screen flex items-center justify-center text-neon-green font-mono animate-pulse">
+            <div className={styles.loading}>
               {t.projects.loading}
             </div>
           ) : (
-            <div className="flex flex-col relative z-10">
+            <div className={styles.projectsList}>
               {repos.map((repo) => (
                 <ProjectCard 
                   key={repo.id} 
@@ -103,7 +95,7 @@ const Projects = () => {
         </div>
 
         {/* --- BARRA DERECHA (Sticky) --- */}
-        <div className="hidden lg:block sticky top-0 h-screen z-20">
+        <div className={styles.stickySidebar}>
           <SideTechStack direction="reverse" />
         </div>
 

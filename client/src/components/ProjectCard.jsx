@@ -1,14 +1,10 @@
-/**
- * @file ProjectCard.jsx
- * @description Componente para mostrar un único proyecto con detalles obtenidos de un objeto de repositorio.
- * Cambia el color de fondo de un elemento padre cuando se desplaza a la vista.
- */
 import React, { useRef, useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion, useInView } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { projectConfig } from '../constants/projectConfig';
 import { useSettings } from '../context/SettingsContext';
+import styles from './ProjectCard.module.css';
 
 /**
  * Muestra una tarjeta para un único proyecto.
@@ -48,39 +44,39 @@ const ProjectCard = ({ repo, setBgColor }) => {
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="min-h-screen flex flex-col justify-center items-center py-20 px-4 md:px-10"
+      className={styles.cardContainer}
     >
-      <div className="w-full max-w-5xl">
+      <div className={styles.contentWrapper}>
         
-        <div className="text-center mb-12">
+        <div className={styles.header}>
           <h3 
-            className="text-4xl md:text-6xl font-bold font-mono text-white mb-4 tracking-tighter"
+            className={styles.title}
             style={{ color: config.color }}
           >
             {repo.name}
           </h3>
           <p 
-            className="text-xl md:text-2xl text-neon-green font-mono uppercase tracking-widest mb-6"
+            className={styles.subtitle}
             style={{ color: config.accent }}
           >
             {t.projectSubtitles[repo.name] || t.projectSubtitles.default}
           </p>
           
           <p 
-            className="text-gray-200 font-medium max-w-3xl mx-auto text-base md:text-lg leading-relaxed drop-shadow-sm"
+            className={styles.description}
             style={{ color: config.color }}
           >
             {repo.description || t.projectCard.noDescription}
           </p>
         </div>
 
-        <div className="relative group w-full mb-12 rounded-xl overflow-hidden shadow-2xl border border-gray-800 bg-[#111]">
-          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-6 backdrop-blur-sm z-10">
+        <div className={styles.imageWrapper}>
+          <div className={styles.overlay}>
              <a 
                 href={repo.html_url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-neon-green hover:scale-105 transition-all flex items-center gap-2"
+                className={styles.btnCode}
               >
                 <FaGithub /> {t.projectCard.codeButton}
               </a>
@@ -89,7 +85,7 @@ const ProjectCard = ({ repo, setBgColor }) => {
                   href={repo.homepage} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="px-6 py-3 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-black hover:scale-105 transition-all flex items-center gap-2"
+                  className={styles.btnDemo}
                 >
                   <FaExternalLinkAlt /> {t.projectCard.demoButton}
                 </a>
@@ -99,13 +95,13 @@ const ProjectCard = ({ repo, setBgColor }) => {
           <img 
             src={config.image} 
             alt={repo.name} 
-            className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
+            className={styles.projectImage}
           />
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className={styles.tagsList}>
           {repo.language && (
-            <span className="px-4 py-2 border border-white/20 rounded-full text-sm font-mono text-gray-300 backdrop-blur-md">
+            <span className={styles.tagPill}>
               {repo.language}
             </span>
           )}

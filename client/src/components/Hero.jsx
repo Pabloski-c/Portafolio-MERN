@@ -4,11 +4,12 @@ import { FaGithub, FaLinkedin, FaFileDownload } from 'react-icons/fa';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { useSettings } from '../context/SettingsContext';
+import styles from './Hero.module.css';
 
 // --- CONFIGURACIÓN ---
 // Estas variables facilitan la actualización de datos clave sin tener que buscarlos en el código.
 const GITHUB_USERNAME = "Pabloski-c"; // Tu nombre de usuario de GitHub para la foto de perfil.
-const CV_URL_ES ="https://drive.google.com/file/d/1NVMiDpRfsfXkp0gpKMjTsymaWgT0Rb3o/view?usp=drive_link"; // Enlace directo a tu CV en español.
+const CV_URL_ES = "https://drive.google.com/file/d/1NVMiDpRfsfXkp0gpKMjTsymaWgT0Rb3o/view?usp=drive_link"; // Enlace directo a tu CV en español.
 const CV_URL_EN = "https://drive.google.com/file/d/1o8q3cmGdSYNXmn6CxFO4K7jYgY1-GUNc/view?usp=drive_link"; // Enlace directo a tu CV en inglés.
 
 /**
@@ -27,13 +28,11 @@ const Hero = () => {
   const cvUrl = language === 'en' ? CV_URL_EN : CV_URL_ES;
 
   return (
-    <section className="min-h-screen bg-dark-bg text-white flex items-center justify-center px-4 sm:px-6 relative overflow-hidden pt-24 md:pt-0"> {/* Padding lateral ajustado */}
-      
+    <section className={styles.hero}>
       {/* Fondo con efecto de grilla sutil y decorativo */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+      <div className={styles.gridBackground}></div>
 
-      {/* Cambiamos gap-10 a gap-8 para tablets */}
-      <div className="container mx-auto grid md:grid-cols-2 gap-8 lg:gap-10 items-center z-10">
+      <div className={`container ${styles.heroContent}`}>
         
         {/* --- COLUMNA IZQUIERDA: TEXTO Y LLAMADAS A LA ACCIÓN --- */}
         <motion.div 
@@ -41,40 +40,41 @@ const Hero = () => {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-4 md:space-y-6 text-center md:text-left"
+          className={styles.leftCol}
         >
-          <h2 className="text-lg sm:text-xl md:text-2xl font-mono text-neon-green font-bold tracking-wider"
+          <h2 
+            className={styles.holaMundo}
             dangerouslySetInnerHTML={{ __html: t.hero.holaMundo }}
           />
           
           {/* Título adaptable: Pequeño en móvil, Medio en Tablet, Grande en Desktop */}
-          <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-7xl font-bold tracking-tight">
-            {t.hero.greeting} <span className="text-gray-300">{t.hero.name}</span>
+          <h1 className={styles.greetingTitle}>
+            {t.hero.greeting} <span className={styles.greetingName}>{t.hero.name}</span>
           </h1>
 
           {/* Animación de texto que simula escritura */}
-          <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-400 h-[40px] md:h-[50px]">
+          <div className={styles.typewriterWrapper}>
             <span>{t.hero.iAmA}</span>
             <TypeAnimation
               key={language}
               sequence={[...t.hero.typeAnimation]}
               wrapper="span"
               speed={50}
-              className="text-neon-green border-b-4 border-neon-green"
+              className={styles.typeAnimation}
               repeat={Infinity}
             />
           </div>
 
-          <p className="text-gray-400 max-w-lg mx-auto md:mx-0 text-base sm:text-lg leading-relaxed">
+          <p className={styles.description}>
              {t.hero.shortDescription}
           </p>
 
           {/* --- SECCIÓN 1: ACCIONES PRINCIPALES (Botones) --- */}
-          <div className="flex flex-wrap gap-3 sm:gap-4 justify-center md:justify-start pt-4">
+          <div className={styles.actions}>
             {/* Botón para ir a la sección de contacto */}
             <a 
               href="#contacto"
-              className="w-max px-6 py-3 border-2 border-neon-green text-neon-green font-mono hover:bg-neon-green hover:text-black transition-all duration-300 rounded shadow-neon font-bold text-sm sm:text-base flex items-center justify-center"
+              className={styles.btnContact}
             >
               {t.hero.btnContact}
             </a>
@@ -84,25 +84,26 @@ const Hero = () => {
               href={cvUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-max px-6 py-3 border-2 border-gray-600 text-gray-300 font-mono hover:border-white hover:text-white transition-all duration-300 rounded flex items-center gap-2 text-sm sm:text-base"
+              className={styles.btnResume}
             >
               <FaFileDownload /> {t.hero.btnResume}
             </a>
           </div>
 
           {/* --- SECCIÓN 2: REDES SOCIALES --- */}
-          <div className="mt-8">
-            <p className="text-sm text-gray-500 font-mono mb-4 uppercase tracking-widest">
+          <div className={styles.socials}>
+            <p className={styles.socialsLabel}>
               {t.hero.socials}
             </p>
 
             {/* Enlaces a perfiles sociales con iconos */}
-            <div className="flex gap-4 justify-center md:justify-start">
+            <div className={styles.socialsList}>
               <a 
                 href="https://github.com/Pabloski-c" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-12 h-12 flex items-center justify-center border border-gray-700 rounded-lg bg-[#111] text-gray-400 text-xl hover:border-neon-green hover:text-neon-green hover:shadow-[0_0_10px_rgba(0,255,65,0.3)] transition-all duration-300"
+                className={styles.socialBtn}
+                aria-label="GitHub"
               >
                 <FaGithub />
               </a>
@@ -110,7 +111,8 @@ const Hero = () => {
                 href="https://www.linkedin.com/in/pablo-a-torres-lell/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-12 h-12 flex items-center justify-center border border-gray-700 rounded-lg bg-[#111] text-gray-400 text-xl hover:border-neon-green hover:text-neon-green hover:shadow-[0_0_10px_rgba(0,255,65,0.3)] transition-all duration-300"
+                className={styles.socialBtn}
+                aria-label="LinkedIn"
               >
                 <FaLinkedin />
               </a>
@@ -125,17 +127,17 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="flex justify-center relative mt-8 md:mt-0"
+          className={styles.rightCol}
         >
           {/* Aura decorativa detrás de la imagen con animación de pulso */}
-          <div className="absolute w-64 h-64 sm:w-80 sm:h-80 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-neon-green rounded-full blur-[80px] opacity-20 animate-pulse"></div>
+          <div className={styles.glowAura}></div>
           
           {/* Contenedor de la imagen de perfil con borde y sombra */}
-          <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[450px] lg:h-[450px] rounded-full border-2 border-neon-green shadow-neon overflow-hidden group cursor-pointer">
+          <div className={styles.avatarContainer}>
              <img 
                src={profileImage} 
                alt="Profile" 
-               className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+               className={styles.avatarImg}
              />
           </div>
         </motion.div>

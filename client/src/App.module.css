@@ -1,0 +1,5 @@
+.appWrapper {
+  background-color: var(--color-dark-bg);
+  min-height: 100vh;
+  font-family: var(--font-sans);
+}

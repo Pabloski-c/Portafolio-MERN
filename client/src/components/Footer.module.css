@@ -1,0 +1,54 @@
+.footer {
+  background-color: #000000;
+  color: var(--color-text-gray-500);
+  padding: 2rem 0;
+  border-top: 1px solid #111827;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+.footerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .footerContainer {
+    flex-direction: row;
+  }
+}
+
+.footerItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.codeIcon {
+  color: var(--color-neon-green);
+}
+
+.authorName {
+  color: var(--color-text-white);
+  font-weight: 700;
+}
+
+.heartIcon {
+  color: var(--color-error);
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.15);
+  }
+}

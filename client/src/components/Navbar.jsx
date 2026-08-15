@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { FaBars, FaTimes, FaCode, FaGlobe } from 'react-icons/fa';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { useSettings } from '../context/SettingsContext';
+import styles from './Navbar.module.css';
 
 /**
  * Componente de la barra de navegación principal.
@@ -62,19 +64,19 @@ const Navbar = () => {
   }, [links]);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-dark-bg/80 backdrop-blur-md border-b border-gray-800 transition-all duration-300">
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center relative">
+    <nav className={styles.navbar}>
+      <div className={`container ${styles.navContainer}`}>
         
         {/* LOGO */}
-        <div className="flex-1 flex justify-start">
-          <div className="text-xl md:text-2xl font-bold font-mono text-white flex items-center gap-2 cursor-pointer">
-            <FaCode className="text-neon-green" />
+        <div className={styles.logoWrapper}>
+          <div className={styles.logo}>
+            <FaCode className={styles.logoIcon} />
             <span dangerouslySetInnerHTML={{ __html: t.navbar.logo.replace('Dev', '<span class="text-neon-green">Dev</span>') }} />
           </div>
         </div>
 
         {/* LINKS DESKTOP - Se muestran solo en pantallas grandes (md y superiores) */}
-        <ul className="hidden md:flex flex-1 justify-center gap-8 text-sm font-mono tracking-wide" onMouseLeave={() => setHoveredLink(null)}>
+        <ul className={styles.desktopNav} onMouseLeave={() => setHoveredLink(null)}>
           {links.map((link) => {
             const isActive = activeSection === link.href;
             const isHovered = hoveredLink === link.href;
@@ -83,16 +85,12 @@ const Navbar = () => {
             return (
               <li 
                 key={link.id} 
-                className="relative"
+                className={styles.navItem}
                 onMouseEnter={() => setHoveredLink(link.href)}
               >
                 <a 
                   href={link.href} 
-                  className={`relative z-10 transition-colors duration-300 uppercase font-semibold whitespace-nowrap pb-1 ${
-                    isActive || isHovered
-                      ? 'text-neon-green' 
-                      : 'text-gray-300'
-                  }`}
+                  className={`${styles.navLink} ${isActive || isHovered ? styles.navLinkActive : ''}`}
                 >
                   {link.text}
                 </a>
@@ -101,7 +99,7 @@ const Navbar = () => {
                 {isCurrentIndicator && (
                   <motion.div
                     layoutId="navbar-underline"
-                    className="absolute left-0 right-0 bottom-0 h-[2px] bg-neon-green"
+                    className={styles.navUnderline}
                     initial={false}
                     transition={{ type: "spring", stiffness: 350, damping: 30 }}
                   />
@@ -112,41 +110,38 @@ const Navbar = () => {
         </ul>
 
         {/* CONTROLES DERECHA */}
-        <div className="flex-1 flex justify-end items-center gap-4">
+        <div className={styles.controls}>
           {/* Botón de Idioma */}
           <button 
             onClick={toggleLanguage}
-            className="flex items-center gap-2 text-gray-300 hover:text-neon-green transition-colors p-2"
+            className={styles.langBtn}
             title={language === 'es' ? "Switch to English" : "Cambiar a Español"}
           >
-            <FaGlobe className="text-lg" />
-            <span className="font-mono text-sm uppercase font-semibold hidden sm:inline">
+            <FaGlobe />
+            <span className={styles.langText}>
               {language === 'es' ? 'ES' : 'EN'}
             </span>
           </button>
 
           {/* BOTÓN MENÚ MOVIL - Se muestra solo en pantallas pequeñas (inferiores a md) */}
-          <div className="md:hidden text-2xl text-white cursor-pointer hover:text-neon-green" onClick={() => setIsOpen(!isOpen)}>
-            {/* Cambia el icono dependiendo de si el menú está abierto o cerrado */}
+          <div className={styles.mobileToggle} onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <FaTimes /> : <FaBars />}
           </div>
         </div>
 
         {/* MENÚ DESPLEGABLE MOVIL - Se muestra solo si `isOpen` es true */}
         {isOpen && (
-          <div className="absolute top-full left-0 w-full bg-dark-bg/95 backdrop-blur-xl border-b border-gray-800 flex flex-col items-center py-8 md:hidden shadow-neon z-50">
+          <div className={styles.mobileMenu}>
               {links.map((link) => {
                 const isActive = activeSection === link.href;
                 return (
                   <a 
                     key={link.id} 
                     href={link.href} 
-                    className={`py-4 w-full text-center text-lg font-mono uppercase tracking-widest transition-all ${
-                      isActive ? 'text-neon-green bg-white/5' : 'text-gray-300 hover:text-neon-green hover:bg-white/5'
-                    }`}
+                    className={`${styles.mobileLink} ${isActive ? styles.mobileLinkActive : ''}`}
                     onClick={() => setIsOpen(false)}
                   >
-                    <span className={`pb-1 border-b-2 ${isActive ? 'border-neon-green' : 'border-transparent'}`}>
+                    <span className={`${styles.mobileLinkText} ${isActive ? styles.mobileLinkTextActive : ''}`}>
                       {link.text}
                     </span>
                   </a>

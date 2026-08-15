@@ -1,9 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Opcional: Estilos globales base para asegurar el fondo negro si falla algo más */
-body {
-  background-color: #0a0a0a;
-  color: white;
-}
+@import './styles/variables.css';
+@import './styles/globals.css';
+@import './styles/accessibility.css';

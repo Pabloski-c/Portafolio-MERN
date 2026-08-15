@@ -1,0 +1,69 @@
+.settingsContainer {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.popupMenu {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  min-width: 160px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-text-gray-300);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  text-align: left;
+}
+
+.menuItem:hover {
+  color: var(--color-neon-green);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.menuItemActive {
+  color: var(--color-neon-green);
+}
+
+.menuText {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+.triggerBtn {
+  background-color: var(--color-neon-green);
+  color: #000000;
+  padding: 1rem;
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--color-neon-green-btn-shadow);
+  transition: box-shadow var(--transition-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.triggerBtn:hover {
+  box-shadow: 0 0 25px var(--color-neon-green-btn-hover-shadow);
+}
+
+.triggerIcon {
+  font-size: 1.25rem;
+}

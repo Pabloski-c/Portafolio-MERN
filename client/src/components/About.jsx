@@ -4,6 +4,7 @@ import rehypeRaw from 'rehype-raw';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { useSettings } from '../context/SettingsContext';
+import styles from './About.module.css';
 
 /**
  * Componente "Sobre Mí".
@@ -90,26 +91,27 @@ const About = () => {
   }, [language]); // El efecto se ejecuta cuando cambia el idioma.
 
   return (
-    <section id="sobre-mi" className="py-20 bg-[#0a0a0a] text-white relative">
-      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
+    <section id="sobre-mi" className={styles.about}>
+      <div className={`container ${styles.aboutContainer}`}>
         
         {/* Título de la sección con animación */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-12 text-center md:text-left"
+          className={styles.header}
         >
-          <h2 className="text-3xl md:text-4xl font-mono font-bold text-neon-green inline-block border-b-4 border-neon-green pb-2"
+          <h2 
+            className={styles.title}
             dangerouslySetInnerHTML={{ __html: t.about.title }}
           />
         </motion.div>
 
         {/* Renderizado condicional basado en el estado */}
         {loading ? (
-          <div className="font-mono text-neon-green animate-pulse">{t.about.loading}</div>
+          <div className={styles.loading}>{t.about.loading}</div>
         ) : error ? (
-          <div className="text-red-500 font-mono border border-red-500 p-4 rounded bg-red-500/10">
+          <div className={styles.error}>
             {t.about.error}
           </div>
         ) : (
@@ -118,35 +120,35 @@ const About = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="prose prose-invert prose-lg max-w-none"
+            className={styles.prose}
           >
             <ReactMarkdown
-              // rehypeRaw permite interpretar HTML dentro del Markdown (¡usar con precaución y solo con fuentes de confianza!).
+              // rehypeRaw permite interpretar HTML dentro del Markdown.
               rehypePlugins={[rehypeRaw]} 
               // `components` permite sobreescribir y estilizar elementos HTML específicos.
               components={{
-                h1: ({...props}) => <h3 className="text-2xl font-bold font-mono text-white mt-8 mb-4 border-l-4 border-neon-green pl-4" {...props} />,
-                h2: ({...props}) => <h4 className="text-xl font-bold font-mono text-gray-200 mt-6 mb-3" {...props} />,
-                h3: ({...props}) => <h5 className="text-lg font-bold font-mono text-neon-green mt-4 mb-2" {...props} />,
+                h1: ({...props}) => <h3 className={styles.heading1} {...props} />,
+                h2: ({...props}) => <h4 className={styles.heading2} {...props} />,
+                h3: ({...props}) => <h5 className={styles.heading3} {...props} />,
                 
-                p: ({...props}) => <p className="font-mono text-gray-400 leading-relaxed mb-4 text-sm md:text-base" {...props} />,
+                p: ({...props}) => <p className={styles.paragraph} {...props} />,
                 
-                ul: ({...props}) => <ul className="font-mono list-disc list-inside text-gray-300 mb-4 space-y-1 text-sm md:text-base" {...props} />,
-                li: ({...props}) => <li className="marker:text-neon-green" {...props} />,
+                ul: ({...props}) => <ul className={styles.list} {...props} />,
+                li: ({...props}) => <li className={styles.listItem} {...props} />,
                 
-                a: ({...props}) => <a className="text-neon-green hover:underline font-mono" target="_blank" rel="noopener noreferrer" {...props} />,
+                a: ({...props}) => <a className={styles.link} target="_blank" rel="noopener noreferrer" {...props} />,
                 
                 // Estiliza las imágenes para que se muestren pequeñas y en línea (ideal para iconos de tecnologías).
                 img: ({...props}) => (
                   <img 
-                    className="inline-block h-6 w-auto m-1 rounded-sm hover:scale-110 transition-transform select-none" 
+                    className={styles.badgeImg} 
                     {...props} 
                   />
                 ),
                 
                 // Estiliza los bloques de código y el código en línea de manera diferente.
                 code: ({inline, children, ...props}) => (
-                  <code className={`${inline ? 'bg-gray-800 text-neon-green px-1 py-0.5 rounded' : 'block bg-[#111] p-4 rounded-lg border border-gray-700 overflow-x-auto'} font-mono text-sm`} {...props}>
+                  <code className={inline ? styles.codeInline : styles.codeBlock} {...props}>
                     {children}
                   </code>
                 )

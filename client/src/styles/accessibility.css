@@ -1,0 +1,18 @@
+/* --- Accesibilidad: Alto Contraste --- */
+body.high-contrast * {
+  background-color: #000000 !important;
+  color: #ffff00 !important;
+  border-color: #ffffff !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+body.high-contrast .neon-accent,
+body.high-contrast [class*="neon"],
+body.high-contrast [class*="active"] {
+  color: #00ff00 !important; /* Verde puro para máximo contraste */
+}
+
+body.high-contrast img {
+  filter: grayscale(100%) contrast(120%);
+}

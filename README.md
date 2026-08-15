@@ -4,7 +4,7 @@
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
 ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
 
 > Un portafolio personal interactivo con estética "Hacker/Terminal", desarrollado desde cero utilizando el stack MERN completo. Cuenta con integración de API externa (GitHub) y un sistema de mensajería propio.
@@ -42,7 +42,7 @@
 
 ### Frontend (Cliente)
 * **React + Vite:** Para una construcción rápida y modular.
-* **Tailwind CSS:** Para el estilizado avanzado y diseño responsivo.
+* **CSS Modules & Vanilla CSS:** Arquitectura de estilos desacoplada y modular con tokens y variables CSS.
 * **Framer Motion:** Para las transiciones, scroll-spy y efectos visuales.
 * **React Markdown & Rehype Raw:** Para procesar y estilizar el perfil traído desde GitHub.
 * **React Type Animation:** Para el efecto máquina de escribir en el Hero.
